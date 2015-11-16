@@ -1,0 +1,1342 @@
+\documentclass[oneside]{book}
+\usepackage{braket}
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{empheq}
+\usepackage{enumitem}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{calligra}
+\usepackage{algpseudocode} 
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\textwidth}{490pt}
+\setlength{\topmargin}{-40pt}
+\addtolength{\hoffset}{-0.3cm}
+\addtolength{\textheight}{4cm}
+\usepackage{amssymb}
+\usepackage{graphicx} % Required for the inclusion of images
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{tikz}
+
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale = 0.42]{lcaoderecha}
+%	\caption{Eletr\'on ligado solo al núcleo derecho}
+%	\label{fig1}
+%	\end{figure}
+
+
+
+
+\begin{document}
+%\tableofcontents
+%\pagebreak
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\textsc{\LARGE Física Estadística}\\[0.5cm]
+\textsc{\LARGE Teoría Cinética de Gases}\\[0.5cm]
+\textsc{\LARGE Notas de Clase}\\[0.5cm]
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{l r}
+\large
+Notas de Clase del Profesor: Gabriel Téllez% Instructor/supervisor
+\normalsize
+\end{tabular}
+\end{center} %\\[0.5cm]
+
+
+
+\textbf{\large Estas son las notas de clase tomadas en el semestre 2014-2  en la clase Física Estadística dictada por el profesor Gabriel Téllez. Estas notas son escritas por un alumno y pueden contener errores, uselas con precauci\'on.}\\[0.1cm]
+
+
+
+\begin{flalign}\end{flalign}
+\begin{equation*}
+ f(\vec{r},\vec{\nu}) = n  \left({\frac{m }{2\pi k_B T }}\right)^{\frac{3}{2}} e^{-\beta m |\vec{\nu}|^2 /2}\\[0.4cm]
+\end{equation*}
+
+
+\begin{equation*}
+ F({\nu}) d{\nu} =  4\pi n  \left({\frac{m }{2\pi k_B T }}\right)^{\frac{3}{2}} \nu^2e^{-\beta m {\nu}^2 /2}
+\end{equation*}
+
+
+
+
+\begin{align*}
+\braket{\vec{\nu}}&= 0           &  \braket{\nu}&=  \sqrt{\frac{8k_B T}{\pi m}}              \\ \\
+\braket{{\nu}^2}&= \frac{3 k_B T}{m}         &  \braket{{\nu}_{\mu}^2}&= \frac{ k_B T}{m} \quad  \mu = x, y z   \\
+\end{align*}
+
+
+
+
+
+\begin{figure}[H]
+	\centering
+ 	\includegraphics[scale = 0.47]{calori}
+ \end{figure}
+ 
+
+
+\tableofcontents
+\pagebreak
+
+\chapter{Teoría Cinética de Gases}
+
+
+\section{Distribución de Velocidades}
+
+
+\begin{equation*}
+f(\vec{r},\vec{\nu}) d\vec{r} d\vec{\nu} = \textbf{Número de moleculas que se encuentran en el intervalo $[\vec{r},\vec{r}+d\vec{r}]$ con velocidad en $[\vec{\nu},\vec{\nu}+d\vec{\nu}]$}
+\end{equation*}
+
+Se tiene un gas en un volumen $V$ y a temperatura $T$. Este gas contiene $N$ partículas, cada una con masa $m$. Se desea conocer propiedades del conjunto las partículas, como la distribución de velocidades para ellas. Para ello se usa el formalismo
+canónico.
+
+\begin{equation}
+\label{1.1} \mathcal{H} = \sum_{i=1}^{N} \frac{|\vec{P}_i|^2}{2m} + \underset{1 \leq i < j \leq N}{\sum \sum} \Phi(|\vec{r}_i - \vec{r}_j|)
+\end{equation}
+
+
+El hamiltoniano para esta situación esta dado por la expresión (\ref{1.1}), donde el potencial $\Phi(|\vec{r}_i - \vec{r}_j|)$ solo depende de las posiciones relativas entre partículas.
+
+\begin{equation}
+\label{1.2}f(\vec{r},\vec{\nu}) = \text{cte } \int e^{-\beta \mathcal{H}(\vec{r},\vec{r}_2,\dots,\vec{r}_N,m\vec{\nu},m\vec{\nu}_2,\dots,m\vec{\nu}_N)} d\vec{r}_2\dots d\vec{r}_N d\vec{p}_2\dots d\vec{p}_N
+\end{equation}
+
+Se desea encontrar $f(\vec{r},\vec{\nu})$, que solo depende de la posición de una partícula y su velocidad(momento). Por lo que en la expresión (\ref{1.2}) se integra sobre las demás posiciones y momentos.
+\begin{equation}
+\label{1.3}f(\vec{r},\vec{\nu}) = \text{cte } e^{-\beta m |\vec{\nu}|^2 /2}\left(\int_{\mathbb{R}^3} d\vec{p}\; e^{-\beta |\vec{p}|^2/(2m)}\right)^{N-1} \int d\vec{r}_2\dots d\vec{r}_N \;e^{-\beta\underset{1 \leq i < j \leq N}{\sum \sum} \Phi(|\vec{r}_i - \vec{r}_j|) }
+\end{equation}
+
+
+La parte del momento se separa fácilmente y se integra sobre todos los momentos que no interesan. Para ver que la parte espacial no contribuye mas que con una constante, se procede a manipular las integrales de posición.
+
+
+\begin{equation}
+\label{1.4} \int d\vec{r}_2\dots d\vec{r}_N \;e^{-\beta\underset{1 \leq i < j \leq N}{\sum \sum} \Phi(|\vec{r}_i - \vec{r}_j|) } = \int d\vec{r}_2\dots d\vec{r}_N \;e^{-\beta\left( \sum_{j=2}^{N}\Phi(|\vec{r} - \vec{r}_j|) + \underset{2 \leq i < j \leq N}{\sum \sum} \Phi(|\vec{r}_i - \vec{r}_j|)\right) } 
+\end{equation}
+
+
+
+Haciendo un cambio de variable $ \vec{x}_j = \vec{r}_j - \vec{r}$
+
+\begin{equation}
+\label{1.5} \int d\vec{r}_2\dots d\vec{r}_N \;e^{-\beta\underset{1 \leq i < j \leq N}{\sum \sum} \Phi(|\vec{r}_i - \vec{r}_j|) } = \int d\vec{x}_2\dots d\vec{x}_N \;e^{-\beta\left( \sum_{j=2}^{N}\Phi(|\vec{x}|) + \underset{2 \leq i < j \leq N}{\sum \sum} \Phi(|\vec{x}_i - \vec{x}_j|)\right) } 
+\end{equation}
+
+
+
+Se puede observar en la ecuación (\ref{1.5}) que esta integral no depende de la posición $\vec{r}$. Por lo que $f(\vec{r},\vec{\nu})$ tampoco depende de la posición de la partícula. Esto se puede ver desde el punto físico debido a que la densidad no cambia al trasladar la partícula por lo que la distribución no debe depender de la posición. 
+
+
+\begin{equation}
+\label{1.6}f(\vec{r},\vec{\nu}) = C\; e^{-\beta m |\vec{\nu}|^2 /2}
+\end{equation}
+
+
+
+\begin{equation}
+\label{1.7}\int_{\mathbb{R}^3} \int_{V}d\vec{r}d\vec{\nu}  \; f(\vec{r},\vec{\nu}) =1 
+\end{equation}
+
+
+
+Con la expresión (\ref{1.6}) se procede a calcular la constante $C$. Esta se encuentra exigiendo que la distribución este normalizada (\ref{1.7}).
+
+
+
+\begin{equation}
+\label{1.8}\int_{\mathbb{R}^3} \int_{V}d\vec{r}d\vec{\nu}  \; f(\vec{r},\vec{\nu}) = C V \left(\sqrt{\frac{2\pi }{m \beta}}\right)^3
+\end{equation}
+
+
+
+\begin{equation}
+\label{1.9} f(\vec{r},\vec{\nu}) = n  \left({\frac{m }{2\pi k_B T }}\right)^{\frac{3}{2}} e^{-\beta m |\vec{\nu}|^2 /2}\\[0.4cm]
+\end{equation}
+
+
+
+Ahora se desea conocer solo la distribución de rapideces, $F(\nu)$.
+
+
+\begin{equation*}
+F({\nu})  = \textbf{Número de moleculas que se encuentran en el intervalo $[\vec{r},\vec{r}+d\vec{r}]$ con rapidez en $[{\nu},{\nu}+d{\nu}]$}
+\end{equation*}
+
+
+
+
+\begin{equation}
+\label{1.10} f(\vec{r},\vec{\nu}) d\vec{\nu} = f(\vec{r},\vec{\nu})   \nu^2\sin \theta \;d\theta d\phi d\nu
+\end{equation}
+
+
+Pasando a coordenadas esféricas se obtiene la expresión (\ref{1.10}).
+
+
+\begin{equation}
+\label{1.11} F({\nu}) d{\nu} = \left(\int d \Omega \;f(\vec{r},\vec{\nu})   \right)\nu^2 d\nu
+\end{equation}
+
+
+\begin{equation}
+\label{1.12}  \left(\int d \Omega \;f(\vec{r},\vec{\nu})   \right)\nu^2 d\nu = 4\pi \nu^2 f(\vec{r},\vec{\nu})    d\nu  
+\end{equation}
+
+Con el resultado (\ref{1.12}) se obtiene la famosa distribución de rapideces de Maxwell, dada por la siguiente expresión: 
+
+\begin{equation}
+\label{1.13} F({\nu}) d{\nu} =  4\pi n  \left({\frac{m }{2\pi k_B T }}\right)^{\frac{3}{2}} \nu^2e^{-\beta m {\nu}^2 /2}
+\end{equation}
+
+
+Con los resultados (\ref{1.9}) y (\ref{1.13}) se procede a dar algunas cantidades relevantes que se calculan a partir de ambas distribuciones. 
+
+
+
+
+\begin{equation}
+\label{1.14}  \braket{\vec{\nu}} = 0 
+\end{equation}
+
+La velocidad promedio de las partículas es cero, lo cual se intuye físicamente ya que las asunciones para el gas no tienen alguna dirección privilegiada a diferencia, por ejemplo, de un gas en un campo gravitacional.
+
+\begin{equation}
+\label{1.15}  \braket{{\nu}_{\mu}^2}= \int_{\mathbb{R}} d\nu_{\mu} \;\nu_{\mu}^2 \left({\frac{m }{2\pi k_B T }}\right)^{\frac{1}{2}} e^{-\beta m \nu_{\mu}^2 /2}= \frac{ k_B T}{m} \qquad \qquad \mu = x, y z
+\end{equation}
+
+La velocidad cuadrática promedio es igual en cualquier dirección. Nuevamente debido a que no hay ninguna dirección privilegiada. Con este resultado se prueba la equipartición de la energía en un gas que cumple las asunciones iniciales.
+
+\begin{equation}
+\label{1.16}  \braket{{\nu}^2}= \int_{\mathbb{R}^+} d\nu\;\nu^4 \left({\frac{m }{2\pi k_B T }}\right)^{\frac{3}{2}} e^{-\beta m \nu^2 /2}= \frac{3 k_B T}{m}
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{1.17}  \braket{|\vec{\nu}|^2} -|\braket{\vec{\nu}}|^2=   \braket{|\vec{\nu}|^2}  =  \braket{\nu_x^2 + \nu_y^2 +\nu_z^2} = \frac{3 k_B T}{m}
+\end{equation}
+
+Se observa que la velocidad cuadrática media es igual a la varianza de la velocidad.
+
+\begin{equation}
+\label{1.18} \braket{\nu} =  \braket{|\vec{\nu}|} =  \sqrt{\frac{8k_B T}{\pi m}} 
+\end{equation}
+
+
+\begin{equation}
+\label{1.19} \braket{\nu} \neq \sqrt{\braket{\nu^2} }
+\end{equation}
+
+
+En la ecuación (\ref{1.19}) se reúnen dos resultados que muestran que la raíz cuadrada de la velocidad cuadrática media no es igual a la rapidez media. 
+
+
+
+
+\section{Presión}
+
+
+
+\begin{figure}[H]
+ \label{fig}	\centering
+ 	\includegraphics[scale = 0.27]{presion}
+ 	\caption{Dibujo esquemático de la situación física}
+ 	\label{canonico}
+ \end{figure}
+ 
+
+
+\begin{equation}
+\label{2.1} \Delta \vec{p} = m (\vec{\nu}_f -\vec{\nu}_i)
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.2} \Delta \vec{p} = - 2m \nu_{x_i} \; \hat{i}
+\end{equation}
+
+El cambio de momento de una partícula al colisionar con una pared esta dado por la ecuación (\ref{2.2}).
+
+\begin{equation}
+\label{2.3} \frac{\Delta \vec{p}}{\Delta t} = \text{Fuerza que hace la pared sobre una molecula}
+\end{equation}
+
+\begin{equation}
+\label{2.32}  n_0 \nu_x dA = \text{\# de moléculas en el cilindro}
+\end{equation}
+
+\begin{equation}
+\label{2.4} \vec{F} = \left( n_0 \nu_x dA\right)  \left(2 m \nu_x \hat{i}\right)
+\end{equation}
+
+
+\begin{figure}[H]
+ \label{figp}	\centering
+ 	\includegraphics[scale = 0.27]{pared}
+ 	\caption{Densidad cerca a la pared}
+ 	\label{pared}
+ \end{figure}
+ 
+
+
+La fuerza que hace la pared sobre la partícula es dada por (\ref{2.4}), donde $n_0$ es la densidad promedio cerca a la pared. En la figura (\ref{pared}) se muestra esquemáticamente como varia la densidad al acercarse a el borde del contenedor(superficie del volumen).
+
+
+
+\begin{equation}
+\label{2.5} \braket{P} = \int_{\nu_x \in \mathbb{R}^+} d\vec{\nu}\;  2 n_0 m \nu_x^2 f(\vec{r},\vec{\nu}) 
+\end{equation}
+
+$$ n_0(x) \qquad \frac{N}{V}$$
+
+
+
+
+\begin{equation*}
+=2 n_0 m\int_{\nu_x \in \mathbb{R}^+} d\vec{\nu}\;   \nu_x^2 f(\vec{r},\vec{\nu}) = 2 n_0 m \frac{\braket{\nu_x^2}}{2}= 2 n_0 m \frac{k_B T}{2m}  
+\end{equation*}
+
+
+
+Para calcular la presión que hacen las partículas sobre la pared se promedia sobre las velocidades posibles (\ref{2.5}).
+
+\begin{equation}
+\label{2.6} \braket{P}= n_0  k_B T  
+\end{equation}
+
+
+Finalmente la presión para el gas tomando solo en cuenta las interacciones mecánicas es dada por (\ref{2.6}). Es importante recalcar que la ecuación es válida aun para gases no ideales.
+
+
+
+
+
+
+
+\chapter{Termodinámica de los Sólidos}
+
+
+\section{Función de Partición de un Oscilador Armónico Clásico}
+
+
+
+\begin{equation}
+\label{1.2.1} \mathcal{H}_{1D} = \frac{P_x^2}{2m} + \frac{1}{2}m \omega^2 x^2   
+\end{equation}
+
+
+
+
+Se considera un oscilador armónico en 1 dimensión, que tiene un hamiltoniano dado por (\ref{1.2.1}).
+
+
+
+
+\begin{equation}
+\label{1.2.2} \mathbf{Z}_c = \frac{1}{h}\int_{\mathbb{R}^2} dP_x dx \; e^{-\beta\left(\frac{P_x^2}{2m} + \frac{1}{2}m w^2 x^2   \right)}
+\end{equation}
+
+\begin{equation*}
+ = \frac{1}{h}\sqrt{\frac{2\pi m }{\beta}} \sqrt{\frac{2\pi  }{\beta m \omega^2}} = \frac{2 \pi}{\beta\omega h}
+\end{equation*}
+Calculando la función de partición se obtiene el siguiente resultado:
+
+\begin{equation}
+\label{1.2.3} \mathbf{Z}_c = \frac{ k_B T}{\omega \hbar}
+\end{equation}
+
+
+Se procede a calcular la energía libre de Helmholtz y la energía interna:
+
+
+
+
+\begin{equation}
+\label{1.2.4} \beta \mathcal{F}_c = -\ln\left(\frac{ k_B T}{\omega \hbar}
+\right)\end{equation}
+
+\begin{equation}
+\label{1.2.5} \braket{\mathcal{H}} = -\frac{\partial\ln \mathbf{Z}_c}{\partial \beta} = k_B T
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{1.2.6} \braket{\frac{1}{2m} P_x^2} = \frac{1}{\mathbf{Z}_c} \int_{\mathbf{R}} e^{-\frac{1}{2}\beta m \omega^2 x^2} dx
+  \int_{\mathbf{R}} \frac{1}{2m} P_x^2e^{-\frac{1}{2m}\beta P_x^2} dP_x = \frac{1}{2} k_B T 
+\end{equation}
+
+\begin{equation}
+\label{1.2.7} \braket{\frac{1}{2}m \omega^2 x^2} = \frac{1}{\mathbf{Z}_c} \int_{\mathbf{R}} \frac{1}{2}m \omega^2 x^2 e^{-\frac{1}{2}\beta m \omega^2 x^2} dx
+  \int_{\mathbf{R}} e^{-\frac{1}{2m}\beta P_x^2} dP_x = \frac{1}{2} k_B T
+ \end{equation}
+
+
+
+
+En las ecuaciones (\ref{1.2.6}) y (\ref{1.2.7}) se puede ver que cada grado de libertad que aparece en forma \textbf{cuadrática} en el hamiltoniano contribuye con $\frac{1}{2} k_B T $ a la energía promedio.
+
+
+\begin{equation}
+\label{1.2.8} \mathbf{Z}_c = \left(\frac{ k_B T}{\omega \hbar}\right)^{3N}
+\end{equation}
+
+Para el tratamiento de $N$ osciladores tridimensionales se tiene la función de partición (\ref{1.2.8}).
+
+\section{Sólido Cristalino Clásico}
+
+
+
+\begin{equation}
+\label{2.2.1} \mathcal{H} = \sum_{i=1}^{N}\frac{|\vec{P}_i|^2}{2m} +\frac{1}{2}\sum\sum K_i (x_i - x_{i-1})^2
+\end{equation}
+
+
+\begin{equation}
+\label{2.2.2} \mathcal{U} = \frac{1}{2}\sum\sum K_i (x_i - x_{i-1})^2
+\end{equation}
+
+Un modelo para un solido cristalino esta dado por $N$ osciladores armónicos. El potencial $\mathcal{U}$ de interacción armónico es una forma cuadrática.
+
+\begin{equation}
+\label{2.2.3} \mathcal{U} =  \left(
+\begin{array}{ccccc}
+x_1 & . & . &.  & x_N\\
+\end{array}
+\right)\mathbb{V} \left(
+\begin{array}{c}
+x_1\\
+.\\
+.\\
+.\\
+x_N\\
+\end{array}
+\right)
+\end{equation}
+
+Cualquier forma cuadrática se puede escribir en forma matricial como se muestra en la ecuación (\ref{2.2.3}), donde $\mathbb{V}$ es una matriz simétrica.
+
+
+
+
+\begin{equation}
+\label{2.2.4} \mathbf{X} = \left(
+\begin{array}{c}
+x_1\\
+.\\
+.\\
+.\\
+x_N\\
+\end{array}
+\right)  = \mathbb{B} \left(
+\begin{array}{c}
+\xi_1\\
+.\\
+.\\
+.\\
+\xi_N\\
+\end{array}
+\right) = \mathbb{B} \; \mathbf{\xi}\\[0.3cm]
+\end{equation}
+
+
+
+Haciendo un cambio de base apropiado (\ref{2.2.4}) se puede diagonalizar la forma cuadrática:
+
+
+\begin{equation}
+\label{2.2.5} \mathbf{X}^t \mathbb{V}  \mathbf{X} = \xi^t \left( \mathbb{B}^t\mathbb{V} \mathbb{B} \right) \xi = \frac{1}{2}\xi^t \left(\begin{array}{ccccc}
+m\omega_1 &\dots & 0 &  \dots& 0\\
+\vdots& \ddots& & 0&\vdots\\
+0& &\ddots & & 0 \\
+\vdots& 0& & \ddots&\vdots \\
+0&\dots & 0 &\dots &m\omega_{3N}\\
+\end{array}\right) \xi\\[0.3cm]
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{2.2.6} \mathbf{X}^t \mathbb{V}  \mathbf{X} = \frac{1}{2} m \sum_{i=1}^{3N} \omega_i^2 \xi_i^2
+\end{equation}
+
+
+
+En la forma (\ref{2.2.6}) se puede extraer la función de partición sin dificultad:
+
+
+\begin{equation}
+\label{2.2.7} \mathbf{Z}_c = \prod_{j=1}^{3N} \frac{k_B T}{\hbar  \; \omega_j}
+\end{equation}
+
+
+Nuevamente, como en el caso de una dimensión, cada grado de libertad que aparece de forma cuadrática aporta un factor $\frac{1}{2}k_B T$:
+
+\begin{equation}
+\label{2.2.8} \braket{\frac{1}{2} \omega_j \xi_j^2} = \frac{1}{2} k_B T
+\end{equation}
+
+
+\begin{equation}
+\label{2.2.9} \braket{\mathcal{H}} = 3N \left(\braket{P}^2 + \braket{\xi^2}\right) = 3N k_B T
+\end{equation}
+
+\begin{equation}
+\label{2.2.10} U = 3N k_B T
+\end{equation}
+
+
+Utilizando la expresión para la energía interna del gas (\ref{2.2.10}), se procede a calcular la capacidad calorífica $C_V$:
+
+
+\begin{equation}
+\label{2.2.11} C_V = \frac{\partial U}{\partial T} =3N k_B 
+\end{equation}
+
+
+
+\begin{figure}[H]
+ \label{figc}	\centering
+ 	\includegraphics[scale = 0.27]{capacidad}
+ 	\caption{Regímenes de la Capacidad Calorífica de un Sólido}
+ 	\label{capacidad}
+ \end{figure}
+ 
+
+
+En la imagen (\ref{capacidad}) se muestra esquemáticamente la capacidad calorífica de un sólido. El resultado obtenido (\ref{2.2.10}) sirve bien para el régimen clásico del dibujo.
+
+
+
+
+
+
+
+\section{Oscilador Armónico Cuántico}
+
+
+
+
+
+\begin{equation}
+\label{2.3.1} \widehat{H} = \frac{\widehat{P}^2}{2m} + \frac{1}{2} m \omega^2 \widehat{x}^2 
+\end{equation}
+
+
+Ahora se considera un solo oscilador armónico cuántico en una dimensión. El hamiltoniano para este caso por la ecuación (\ref{2.3.1}).
+
+
+
+
+
+\begin{equation}
+\label{2.3.2} \mathbf{Z}_c = \sum_{n} e^{-\beta E_n}
+\end{equation}
+
+\begin{equation}
+\label{2.3.3} E_n = \left(n + \frac{1}{2}\right)\hbar \omega
+\end{equation}
+
+
+
+
+\begin{figure}[H]
+ \label{figos}	\centering
+ 	\includegraphics[scale = 0.17]{oscilador}
+ 	\caption{Niveles de Energía de un Oscilador Armónico Cuántico}
+ 	\label{oscilador}
+ \end{figure}
+ 
+
+La función de partición cuántica esta dada por (\ref{2.3.2}), donde $E_n$ son las energías propias del operador energía $\widehat{H}$.
+
+
+
+
+\begin{equation}
+\label{2.3.4} \mathbf{Z}_c = \sum_{n=0}^{\infty} e^{-\beta \hbar \omega \left(n + \frac{1}{2}\right)} = e^{-\beta \hbar \omega /2}\sum_{n=0}^{\infty} e^{-n\beta \hbar \omega  } =\frac{e^{-\beta \hbar \omega /2}}{1 -e^{-\beta \hbar \omega }}
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.3.5} \braket{\widehat{H}} =\frac{1}{\mathbf{Z}_c}\sum_{n=0}^{\infty} e^{-\beta E_n}  =-\frac{\partial \ln \mathbf{Z}_c}{\partial \beta}
+\end{equation}
+
+
+\begin{equation}
+\label{2.3.6} \braket{\widehat{H}} = \frac{\hbar \omega}{2} + \hbar \omega\frac{e^{-\beta \hbar \omega }}{1 -e^{-\beta \hbar \omega }}
+\end{equation}
+
+
+Con la expresión (\ref{2.3.6}) se procede a examinar el comportamiento de la energía interna a bajas y altas temperaturas. 
+
+
+
+\begin{equation}
+\label{2.3.7} \braket{\widehat{H}} = \frac{\hbar \omega}{2} + \hbar \omega\frac{1 {-\beta \hbar \omega }+ O(({\beta \hbar \omega })^2)}{{\beta \hbar \omega } +O(({\beta \hbar \omega })^2)} = \frac{1}{\beta} - \frac{\hbar \omega}{2} + O({\beta \hbar \omega })
+\end{equation}
+
+
+\begin{equation}
+\label{2.3.8} \braket{\widehat{H}}= k_B T - \frac{\hbar \omega}{2} + O({\beta \hbar \omega })
+\end{equation}
+
+
+Se observa que para temperatura altas ($T k_B \gg \hbar \omega$) se recupera el resultado clásico.
+
+
+\begin{equation}
+\label{2.3.9} \braket{\widehat{H}} = \frac{\hbar \omega}{2}
+ +\hbar \omega e^{-\beta \hbar \omega}   + O(\hbar \omega e^{-2\beta \hbar \omega} )\end{equation}
+
+
+\begin{equation}
+\label{2.3.10} C_V =  -\frac{\hbar^2 \omega^2}{k_B T^2} e^{-\beta \hbar \omega} \quad
+ \substack{\xrightarrow{\hspace*{1cm}}\\ T \longrightarrow 0} \quad 0  
+\end{equation}
+
+
+
+El comportamiento para bajas temperaturas ($T k_B \ll \hbar \omega$) esta dado por las ecuaciones (\ref{2.3.9}) para (\ref{2.3.10}) 
+
+
+
+\begin{figure}[H]
+ \label{figcuant}	\centering
+ 	\includegraphics[scale = 0.27]{cuantico}
+ 	\caption{Régimen Cuántico}
+ 	\label{cuant}
+ \end{figure}
+ 
+En el régimen cuántico el sistema prefiere los niveles bajos de energía y es difícil subir de energías ya que la energía térmica no es suficiente para proporcionar el salto mínimo entre niveles.  
+ 
+ \begin{figure}[H]
+  \label{figclas}	\centering
+  	\includegraphics[scale = 0.27]{clasico}
+  	\caption{Régimen Clásico}
+  	\label{clas}
+  \end{figure}
+  
+En el régimen clásico la temperatura es lo suficientemente alta para proporcionar saltos grandes (muchos niveles de energía) por lo que se empieza a ver como un continuo.
+
+\begin{figure}[H]
+ \label{figca}	\centering
+ 	\includegraphics[scale = 0.27]{calori}
+ 	\caption{Capacidad Calorífica de un Gas Diatómico}
+ 	\label{calori}
+ \end{figure}
+ 
+
+
+En la figura (\ref{calori}) se muestra como cambia la capacidad de un gas diatómico a medida que se van activando los grados de libertad. 
+ 
+
+
+
+
+\section{Modelos Cuánticos para Sólidos Cristalinos en la Aproximación Armónica }
+
+
+
+
+\begin{equation}
+\label{2.4.1} \mathbf{Z}_c =\frac{e^{-\beta \hbar \omega /2}}{1 -e^{-\beta \hbar \omega }} \qquad \textbf{Un Oscilador 1D}
+\end{equation}
+
+
+\begin{equation}
+\label{2.4.2} \mathbf{Z}_c = \prod_{j=1}^{3N}\frac{e^{-\beta \hbar \omega_j /2}}{1 -e^{-\beta \hbar \omega_j }} \qquad \textbf{N  Osciladores 3D}
+\end{equation}
+
+
+
+En el modelo con función de partición canónica dada por (\ref{2.4.2}), se asume que cada oscilación es independiente.
+
+\subsection{Modelo de Einstein}
+
+
+
+\begin{equation}
+\label{2.4.3} \omega_j = \omega
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.4.4} \mathbf{Z}_c = \left(\frac{e^{-\beta \hbar \omega /2}}{1 -e^{-\beta \hbar \omega }}\right)^{3N} 
+\end{equation}
+
+En el modelo de Einstein se asume que todos los osciladores oscilan con la misma frecuencia $\omega$ (\ref{2.4.3}). Este modelo es sencillo y da resultados buenos para un análisis cualitativo. Sin embargo los resultados cuantitativos no son buenos.
+
+\subsection{Otros Modelos}
+
+
+
+
+\begin{equation}
+\label{2.4.5} \mathcal{N}(\omega) d\omega 
+\end{equation}
+
+Otros modelos utilizan la densidad de estados $\mathcal{N}$, que es el número de modos de oscilación que tienen una frecuencia en el intervalo $[\omega,\omega+d\omega]$. Esta densidad de estados se obtiene con un modelo teórico o experimentalmente.
+
+
+
+\begin{equation}
+\label{2.4.6} \ln \mathbf{Z}_c = \sum_{j} (\beta \hbar \omega_j + \ln\left(1-e^{-\beta\hbar \omega_j}\right)) \mathcal{N}(\omega) d\omega 
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.4.7}\ln \mathbf{Z}_c  = \int_{0}^{\omega_c} d\omega   \; \mathcal{N}(\omega)   (\beta \hbar \omega + \ln\left(1-e^{-\beta\hbar \omega}\right))   
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.4.8} \int_{0}^{\omega_c} d\omega   \; \mathcal{N}(\omega)  = 3N
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

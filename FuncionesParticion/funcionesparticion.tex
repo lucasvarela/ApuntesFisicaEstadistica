@@ -1,0 +1,853 @@
+\documentclass[oneside]{book}
+\usepackage{braket}
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{empheq}
+\usepackage{enumitem}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{calligra}
+\usepackage{algpseudocode} 
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\textwidth}{490pt}
+\setlength{\topmargin}{-40pt}
+\addtolength{\hoffset}{-0.3cm}
+\addtolength{\textheight}{4cm}
+\usepackage{amssymb}
+\usepackage{graphicx} % Required for the inclusion of images
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{tikz}
+
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale = 0.42]{lcaoderecha}
+%	\caption{Eletr\'on ligado solo al núcleo derecho}
+%	\label{fig1}
+%	\end{figure}
+
+
+
+
+\begin{document}
+%\tableofcontents
+%\pagebreak
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\textsc{\LARGE Física Estadística}\\[0.5cm]
+\textsc{\LARGE Funciones de Particion}\\[0.5cm]
+\textsc{\LARGE Notas de Clase}\\[0.5cm]
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{l r}
+\large
+Notas de Clase del Profesor: Gabriel Téllez% Instructor/supervisor
+\normalsize
+\end{tabular}
+\end{center} %\\[0.5cm]
+
+
+
+\textbf{\large Estas son las notas de clase tomadas en el semestre 2014-2  en la clase Física Estadística dictada por el profesor Gabriel Téllez. Estas notas son escritas por un alumno y pueden contener errores, uselas con precauci\'on.}\\[0.1cm]
+
+
+
+
+
+
+\begin{align*}       
+ \text{Energ\'ia Libre de Helmholtz} \qquad\qquad \mathcal{F} = U - TS \\
+\text{Gran Potencial}\qquad\qquad\Omega = \mathcal{F} - \mu N\end{align*}
+
+$$\textbf{Superficie de una esfera de N dimensiones:}\qquad S_N (R) = \frac{2 \pi^{N/2}R^{N-1}}{\Gamma(N/2)} $$
+
+\begin{align*}   
+\textbf{ Longitud Térmica de De Broglie:} \qquad  \lambda = \sqrt{\frac{h^2 \beta}{2\pi m}}
+\end{align*}
+
+\begin{equation*}
+\textbf{Capacidad Calorifica:} \qquad C_v = -\frac{1}{T^2} \frac{\partial^2 S}{\partial E^2}
+\end{equation*}
+
+\begin{align*}
+&          &  \frac{\partial S_m}{\partial E} &= \frac{1}{T} \\             
+\mathbf{Z}_m &= \frac{1}{h^{3N} N!} \int_{\mathcal{H}\left( \Gamma\right) \in [E,E+\Delta E]} d\Gamma        &  \frac{\partial S_m}{\partial V}& = \frac{p}{T} \\   
+&   &  -\frac{\partial S_m}{\partial N} & = \frac{\mu}{T}     
+\\ \\&          & - \frac{\partial \mathcal{F}_c}{\partial T} &=  S_c \\              
+\mathbf{Z}_c &= \frac{1}{h^{3N} N!} \int e^{-\beta \mathcal{H}} d\Gamma        &  -\frac{\partial \mathcal{F}_c}{\partial V}& = P_c \\   
+&   &  \frac{\partial \mathcal{F}_c}{\partial N} & = \mu_c \\ \\
+&          & - \frac{\partial \Omega}{\partial T} &=  S_g \\             
+\mathbf{Z}_g &= 1+ \sum_{N=1}^{\infty}\frac{1}{h^{3N} N!} \int e^{-\beta \mathcal{H} + \beta \mu N} d\vec{p}_1\dots d\vec{p}_Nd\vec{r}_1\dots d\vec{r}_N         &  -\frac{\partial \Omega}{\partial V}& = P_g \\   
+&   &  -\frac{\partial \Omega}{\partial \mu} & = N_g             
+          \end{align*}
+
+
+
+\begin{align*}
+S_m&=k_B \ln \mathbf{Z}_m           &  \mathcal{F}_c &=-k_B T \ln \mathbf{Z}_c              &  \Omega_g &=-k_B T \ln \mathbf{Z}_g\\
+\end{align*}
+
+
+
+\tableofcontents
+\pagebreak
+
+\chapter{ Introducción: Repaso de Mecánica Hamiltoniana}
+
+\section{Espacio de Fase y Formulación Hamiltoniana}
+
+Se considera un volumen $V$ con N partículas de masa $m$. Sobre la partícula $i$ del sistema actúa una fuerza externa dada por $\vec{F}_i$ (\ref{1.1.1}).
+
+\begin{equation}
+\label{1.1.1} \vec{F}_i = - \nabla_i u_{\text{ext}}(\vec{r}_i) = - \frac{\partial u_{\text{ext}}}{\partial \vec{r}_i}
+\end{equation}
+
+Además las fuerzas internas debidas a las interacciones entre partículas, están dadas por $\vec{F}_{j\rightarrow i}$ (\ref{1.1.2})
+
+
+
+\begin{equation}
+\label{1.1.2}\vec{F}_{j\rightarrow i} = - \nabla_i u(\vec{r}_i,\vec{r}_j) = - \frac{\partial u}{\partial \vec{r}_i}(\vec{r}_i,\vec{r}_j)
+\end{equation}
+
+Por lo que la ecuación de movimiento newtoniana para la partícula $i$, viene dada por (\ref{1.1.3}).
+
+
+
+\begin{equation}
+\label{1.1.3}  m \frac{d \vec{v}_i}{dt}   = \sum_{\substack{j=1 \\ j\neq i}}^N \vec{F}_{j\rightarrow i} +\vec{F}_i \qquad 1\leq i \leq N
+\end{equation}
+
+La formulación Hamiltoniana consiste en plantear el Hamltoniano dado por (\ref{1.1.4}) y de él obtener las ecuaciones de movimiento.
+
+
+\begin{equation}
+\label{1.1.4} \mathcal{H}(\vec{r}_1,\dots,\vec{r}_N,\vec{p}_1,\dots,\vec{p}_N) = \mathcal{T} + \mathcal{U}
+\end{equation}
+
+
+Donde $\mathcal{T}$ es la energía cinética (\ref{1.1.5})  y $\mathcal{T}$ la energía potencial (\ref{1.1.6}).
+
+
+\begin{equation}
+\label{1.1.5} \mathcal{T} = \sum_{i= 1}^{N} \frac{|\vec{p}_i|^2}{2m}
+\end{equation}
+
+
+\begin{equation}
+\label{1.1.6} \mathcal{U} = \sum_{i= 1}^{N} u_{\text{ext}}(\vec{r}_i) + \underset{1 \leq i < j \leq N}{\sum \sum} u(\vec{r}_i,\vec{r}_j)
+\end{equation}
+
+
+Del Hamiltoniano se pueden obtener las ecuaciones de movimiento, las cuales son $2N$ ecuaciones de primer orden (\ref{1.1.7} \& \ref{1.1.8} )
+
+\begin{align}
+\label{1.1.7}  \frac{d \vec{p}_i}{dt} = - \frac{\partial \mathcal{H}}{\partial \vec{r}_i} \\
+\label{1.1.8}  \frac{d \vec{r}_i}{dt} =  \frac{\partial \mathcal{H}}{\partial \vec{p}_i} 
+\end{align}
+
+Se define entonces, el espacio de fase como aquel en el que se encuentran todos los estados posibles de un sistema. El espacio de fase tiene dimensión $\mathcal{D} = 3\times 2N$. Por lo que para solucionar un problema macroscópico con este formalismo, es necesario resolver un número de ecuaciones diferenciales del orden de $N \sim 10^{23}$. 
+
+
+\section{Ensambles Estadísticos de Gibbs}
+
+Resolver una cantidad tan grande de ecuaciones diferenciales es bastante difícil, incluso de forma numérica. Por ello, es mejor atacar el problema con un tratamiento de probabilidades. Se busca saber cual es la probabilidad de que el sistema este en un punto $\Gamma$ e incertidumbre $d\tilde{\Gamma}$, del espacio de fases.
+
+
+\begin{align}
+\label{1.2.1}  \Gamma(\vec{r}_1,\dots,\vec{r}_N,\vec{p}_1,\dots,\vec{p}_N) \\
+\label{1.2.2} d\tilde{\Gamma} := \rho(r,t) d\Gamma  \\
+ \label{1.2.3}              d\Gamma = d\vec{r_1}d\vec{r_2} \dots d\vec{r_N} d\vec{p_1}d\vec{p_2} \dots d\vec{p_N}
+\end{align}
+
+
+Esta probabilidad debe estar normalizada.
+
+\begin{equation}
+\label{1.2.4} \int \rho(r,t) d\Gamma = 1
+\end{equation}
+
+
+Con este tratamiento se desea extraer información de algún observable $A$ del sistema. Un ejemplo de un observable es la energía $A = \mathcal{H}$.
+
+
+
+\begin{equation}
+\label{1.2.5} A(\vec{r}_1,\dots,\vec{r}_N,\vec{p}_1,\dots,\vec{p}_N)  = A\left(\Gamma \right)
+\end{equation}
+
+Lo que se puede obtener, es el valor promedio estadístico de un observable, $\braket{A}$:
+
+\begin{equation}
+\label{1.2.6} \braket{A} = \int A\left(\Gamma \right)\rho\left(\Gamma,t\right) d\Gamma
+\end{equation}
+
+También se puede hacer un valor promedio temporal. Para ello se requiere que el intervalo de tiempo en consideración $\Delta t$ se lo suficientemente grande para que alcancen a suceder suficientes interacciones microscópicas pero suficientemente pequeño para que el sistema no haga una evolución macroscopica. 
+
+
+\begin{equation}
+\label{1.2.7} \textbf{Escala de Tiempo Microscopica} \ll \Delta t \ll \textbf{Escala de Tiempo Macroscopica} 
+\end{equation}
+
+Esta promedio temporal se denota como $\bar{A} $ y se define en la ecuación (\ref{1.2.8})
+
+
+\begin{equation}
+\label{1.2.8}  \bar{A} = \frac{1}{\Delta t} \int_{t}^{t + \Delta t} A\left(\Gamma\left(t'\right)\right) dt'
+\end{equation}
+
+
+\section{Hipótesis Ergódica}
+
+La física estadística se basa en lo que se conoce como la Hipótesis Ergódica. Esta dice que para un intervalo $\Delta t$, que cumpla las características mencionadas anteriormente (\ref{1.2.7}), el punto del espacio de fase $\Gamma(t)$ va a ocupar durante el mismo intervalo de tiempo todas las regiones del espacio de fase con energía $\mathcal{H}\left(\Gamma(t)\right) = cte$. Esto significa que todos los microestados para un energía dada son equiprobables (igualmente probables). De esto sigue la igualdad (\ref{1.2.9}).
+
+
+
+\begin{equation}
+\label{1.2.9}  \bar{A} = \braket{A}
+\end{equation}
+
+
+La noción de microestados corresponde a todos los estados posibles que tienen las mismas características a nivel macroscópico.
+
+
+\chapter{Ensamble Microcanónico}
+
+Un ensamble microcanónico cumple con las siguientes características:
+
+\begin{itemize}
+\item Es un sistema aislado.
+\item Tiene un energía constante $E$.
+\item La superficie de energía $\mathcal{H}\left( \Gamma\right)$, cumple $E \leq \mathcal{H}\left( \Gamma\right) \leq E + \Delta E$ donde $ \Delta E \ll E$.
+\item Tiene un volumen $V$.
+\item Tiene un número de partículas $N$.
+\item Las variables de estado son $E$,$V$ \& $N$.
+\end{itemize}
+
+
+\section{Función de Partición del Conjunto Microcanonico}
+
+De lo anterior y la Hipótesis Ergódica se tiene que
+
+\begin{equation}
+   \label{2.1.1}    \rho(\Gamma) = \begin{cases}
+        cte \qquad \text{si }\; \mathcal{H}\left( \Gamma\right) \in [E,E+\Delta E]  \\
+        0  \quad \quad \;\;\;\text{si }\; \mathcal{H}\left( \Gamma\right) \not\in [E,E+\Delta E] 
+        \end{cases}
+\end{equation}
+
+
+Por lo que debido a la condición de normalización se tiene:
+
+
+\begin{eqnarray}
+\label{2.1.2} cte \int_{\mathcal{H}\left( \Gamma\right) \in [E,E+\Delta E]} d\Gamma = 1
+\end{eqnarray}
+
+
+Donde la integral es sobre la superficie del espacio de fases que tiene energía constante $E$. Esta integral es proporcional al \# de microestados compatibles. Se define entonces, la función de partición microcanónica $\mathbf{Z}_m$ (\ref{2.1.3}), que cuenta el \# de microestados compatibles con  energía $ \mathcal{H}\left( \Gamma\right) \in [E,E+\Delta E]  $. También es usual encontrar la notación $\Omega(E)$ en vez de $\mathbf{Z}_m$ (\ref{2.1.4})
+
+\begin{eqnarray}
+\label{2.1.3}  \mathbf{Z}_m = \frac{1}{h^{3N} N!} \int_{\mathcal{H}\left( \Gamma\right) \in [E,E+\Delta E]} d\Gamma 
+\end{eqnarray}
+
+\begin{eqnarray}
+\label{2.1.4} \Omega(E) = \mathbf{Z}_m 
+\end{eqnarray}
+
+El factor $h^{3N}$ ( donde $h$ es la constante de Planck), es el volumen de una celda del espacio de fases. El factor $N!$ evita que se sobre cuente el número de estados, dividiendo por el número de permutaciones posible. Es importante notar que este factor depende del caso particular a estudiar. Por ejemplo si hubiera una mezcla que tiene $N_1$ partículas tipo 1, $N_2$ partículas tipo 2 ..., se tendría que reemplazar el factor $N! \longrightarrow N_1! N_2! \dots$. Ahora se procede a introducir la densidad de microestados(\ref{2.1.6}).
+
+
+
+
+\begin{eqnarray}
+\label{2.1.5} \mathcal{N}(E,N,V) \equiv  \textbf{\# de microestados con energía }\leq E
+\end{eqnarray}
+
+
+\begin{eqnarray}
+\label{2.1.6} n(E,V,N) = \frac{\partial \mathcal{N}}{\partial E}(E,N,V)
+\end{eqnarray}
+
+
+Esta densidad de microestados esta relacionada con la función de partición por medio de la ecuación (\ref{2.1.61})
+
+
+\begin{eqnarray}
+\label{2.1.61}  \mathbf{Z}_m  = n(E,N,V) \;\Delta E
+\end{eqnarray}
+
+\section{Entropía Microcanonica:} Esta se define de acuerdo con la ecuación (\ref{2.1.7})
+
+
+
+\begin{eqnarray}
+\label{2.1.7} S(E,V,N) = k_B \ln \mathbf{Z}_m 
+\end{eqnarray}
+
+
+Utilizando la relaciones termodinámicas para la entropía (\ref{2.1.8} - \ref{2.1.9}) se pueden obtener las relaciones (\ref{2.1.10} - \ref{2.1.11}).
+
+
+\begin{eqnarray}
+\label{2.1.8}  dS_m = \frac{\partial S_m}{\partial E} dE + \frac{\partial S_m}{\partial V} dV + \frac{\partial S_m}{\partial N} dN 
+\end{eqnarray}
+
+
+\begin{eqnarray}
+\label{2.1.9}  dE = T dS_m - p dV + \mu dN 
+\end{eqnarray}
+
+
+
+\begin{align}
+\label{2.1.10}  \frac{\partial S_m}{\partial E} = \frac{1}{T} \\
+\label{2.1.11}  \frac{\partial S_m}{\partial V} = \frac{p}{T} \\
+\label{2.1.12} -\frac{\partial S_m}{\partial N}  = \frac{ \mu}{T}
+\end{align}
+
+Donde $\mu$ es el potencial químico, que se define como la energía necesaria para agregar una partícula al sistema (cambiar $N$).
+
+\section{Límite Termodinámico:} Este limite consiste en mirar como se comporta el ensamble cuando se tiende a infinito las variables extensivas $E$,$V$ y $N$ pero manteniendo constante la densidad de partículas y finita la energía por promedio por partícula:
+
+\begin{itemize}
+\item $ N \rightarrow \infty $ 
+\item $ V \rightarrow \infty $ 
+\item $ E \rightarrow \infty $ 
+\item $ \frac{N}{V} = n = cte < \infty $
+\item $ \frac{E}{N} = \epsilon < \infty $
+\end{itemize}
+
+
+\section{Ejemplo: Gas Ideal}
+
+En un gas ideal no hay interacción entre partículas, por lo que el Hamiltoniano es únicamente la energía cinética de las $N$ partículas:
+
+\begin{equation}
+\label{2.4.1} \mathcal{H} \left(\Gamma\right) = \sum_{i=1}^{N} \frac{|\vec{p}_i|^2}{2m}
+\end{equation} 
+
+Se mira a que equivale la superficie de energía constante $\mathcal{H} \left(\Gamma\right) =E$. Se observa que esta es la ecuación de una hiper-esfera de $3N$ dimensiones y con radio $\sqrt{2mE}$ :
+
+
+\begin{equation}
+\label{2.4.2} \sum_{i=1}^{N} |\vec{p}_i|^2 = 2m E
+\end{equation} 
+
+Por lo que $\mathcal{N}$ es el volumen de la hiper-esfera. Sea $S_{d}$ el área de una hiper-esfera de radio $1$ y dimensión $d$. Se tiene entonces que:
+
+
+\begin{equation}
+\label{2.4.3} \mathcal{N}(E,N,V) = \frac{1}{h^{3N}N!}  \times \frac{S_{3N}R^{3N}}{3N}
+\end{equation} 
+
+\begin{equation}
+\label{2.4.4} n(E,N,V) = \frac{1}{h^{3N}N!}  \times S_{3N}R^{3N-1} \frac{\partial R}{\partial E}
+\end{equation} 
+
+De donde se puede calcular la función de partición microcanonica utilizando (\ref{2.1.61}) y $R = \sqrt{2mE}$:
+
+\begin{equation}
+\label{2.4.5} Z_m(E,V,N) = \frac{ S_{3N} }{h^{3N}N!}  \times (2 m E)^{\frac{3N}{2}} \frac{\Delta E}{2 E}
+\end{equation} 
+
+Utilizando la fórmula para $S_d$ (\ref{2.4.6}) se obtiene la expresión final para la función de partición microcanonica (\ref{2.4.7}).
+
+\begin{eqnarray}
+\label{2.4.6} S_d = \frac{2 \pi^{\frac{d}{2}}}{\Gamma(\frac{d}{2})}
+\end{eqnarray}
+
+
+\begin{eqnarray}
+\label{2.4.7}  Z_m(E,V,N) = \frac{(2 \pi m E)^{\frac{3N}{2}}  }{\Gamma\left(\frac{3N}{2}\right)h^{3N}N!}  \times  \frac{\Delta E}{E}
+\end{eqnarray}
+
+Ahora se procede a calcular la entropía microcanonica.
+
+\begin{multline}
+\label{2.4.8} S_m(E,V,N)  = k_B \ln Z_m(E,V,N)  \\
+ = k_B \left[ \frac{3}{2} N \ln (2 \pi m E)    + \ln\frac{\Delta E}{E}         -\ln\left(\Gamma\left(\frac{3N}{2}\right)h^{3N}N! \right)     \right] 
+\end{multline}
+
+Tomando el límite termodinámico:
+
+
+
+
+\begin{align*}
+N&\rightarrow \infty           &  \frac{N}{V} &=n <\infty\\             
+V&\rightarrow \infty          &   &\\  
+E&\rightarrow \infty   &  \frac{E}{N}&=\epsilon<\infty        
+\end{align*}
+
+Y usando la aproximación de Stirling: 
+
+  
+  \begin{equation}
+  \label{2.4.9} N! \simeq  N\ln N - N + \frac{1}{2} \ln (2\pi N) 
+  \end{equation}
+
+
+
+Se obtiene la expresión (\ref{2.4.10}) para la entropía microcanonica.
+
+  \begin{equation}
+  \label{2.4.10} S_m(E,N,V) = k_B N \left[ \frac{5}{2} + \frac{3}{2}\ln\left( \frac{4\pi m \epsilon}{3 h^2 m^{\frac{2}{3}}}\right)  + O(N)\right] 
+  \end{equation}
+
+Se observa que la entropía microcanonica es proporcional al número de partículas por lo que es una cantidad extensiva(como debería ser). Con la entropía se puede calcular las cantidades $T_m$, $P_m$ y $\mu_m$. 
+
+
+
+
+
+\begin{align}
+\label{2.4.11} E = \frac{3}{2} k_B N T_m \\
+\label{2.4.12} P_m = \frac{N k_B T_m}{V}  \\
+\label{2.4.13} \mu_m = T_m(\ln N - 1)
+\end{align}
+
+
+
+
+
+
+
+
+
+
+\chapter{Ensamble Canónico}
+
+Un ensamble canónico consiste en un sistema $\encircle{A}$ en contacto con un reservorio $\encircle{B}$ y cumplen con las siguientes características:
+
+
+\begin{figure}[H]
+ \label{fig}	\centering
+ 	\includegraphics[scale = 0.27]{canonico}
+ 	\caption{Ensamble Canónico}
+ 	\label{canonico}
+ \end{figure}
+ 
+
+\begin{itemize}
+\item El sistema conjunto $\encircle{A} + \encircle{B} $ es un sistema aislado.
+\item El sistema total tiene una energía total $E_T$. Hay intercambio de energía entre $\encircle{A}$ y $ \encircle{B}  $.
+\item Tiene un volumen $V$.
+\item Tiene un número de partículas $N$.
+\item Tiene una temperatura $T$.
+\item Las variables de estado son $T$,$V$ \& $N$.
+\end{itemize}
+
+
+
+\section{Función de Partición del Conjunto Canónico}
+
+Como el sistema $\encircle{A} + \encircle{B} $ es un sistema aislado, se puede describir como un ensamble microcanónico. Por lo que se tiene que:
+
+
+
+
+
+
+\begin{equation}
+   \label{3.1.1}    \rho_{A \cup B}(\Gamma_A,\Gamma_B) = \begin{cases}
+        cte \qquad \text{si }\; \mathcal{H}_A + \mathcal{H}_B \in [E_T,E_T+\Delta E_T]  \\
+        0  \quad \quad \;\;\;\text{si }\;  \mathcal{H}_A + \mathcal{H}_B  \not\in [E_T-,E_T+\Delta E_T] 
+        \end{cases}
+\end{equation}
+
+
+Integrando sobre $\gamma_B$ se obtiene que:
+
+
+\begin{equation}
+\label{3.1.2} \rho_A(\Gamma_A) = \int  \rho_{A \cup B}\left(\Gamma_A,\Gamma_B\right) \;d \Gamma_B
+\end{equation}
+
+
+
+\begin{align*}
+= cte \int_{\mathcal{H}_A + \mathcal{H}_B \in [E_T,E_T+\Delta E_T]} d \Gamma_B \\ \\
+= cte \; \mathbf{Z}_{m,B}(E_T - \mathcal{H}_A, N_B, V_B) \\ \\
+= cte \; e^{\frac{1}{k_B} S_{m,B}(E_T - \mathcal{H}_A, N_B, V_B)}
+\end{align*}
+ 
+
+Se tiene que la energía de $\encircle{A}$ es mucho menor que la del conjunto total, es decir $  \mathcal{H}_A \ll E_T $. Por esto se considera la expansión de Taylor alrededor de $E_T$ para la entropía:
+
+\begin{equation}
+\label{3.1.3} S_{m,B}(E_T - \mathcal{H}_A, N_B, V_B) = S_{m,B}(E_T, N_B, V_B) - \mathcal{H}_A \frac{\partial S_{m,B}}{\partial E} + \frac{1}{2} \mathcal{H}_A^2 \frac{\partial^2 S_{m,B}}{\partial E^2}   + \dots
+\end{equation} 
+
+Se observa que el primer termino de (\ref{3.1.3}) no depende de $\encircle{A}$, por lo que es una constante que se absorbe. 
+
+
+\begin{equation}
+\label{3.1.4} \frac{\partial S_{m,B}}{\partial E} = \frac{1}{T_A} = \frac{1}{T_B} = \frac{1}{T}
+\end{equation} 
+
+Usando \ref{3.1.4} y aproximando la entropiá a primer orden se obtiene la siguiente expresión para la densidad de probabilidad $\rho_A$:
+
+\begin{equation}
+\label{3.1.5} \rho_A(\Gamma_A) = \text{cte} \; e^{-\frac{\mathcal{H}_A}{k_BT}}
+\end{equation} 
+
+\begin{equation}
+\label{3.1.6} \int \rho_A(\Gamma_A) \;d \Gamma_A= 1
+\end{equation} 
+
+
+De la expresión \ref{3.1.6} se obtiene la constante de la densidad de probabilidades $\rho_A$. Ahora se procede a definir la función de partición canónica.
+
+\begin{equation}
+\label{3.1.7} \mathbf{Z}_c(T,N_A,V_A) \equiv \frac{1}{h^{3N} N_A!} \int e^{-\beta\; \mathcal{H}_A(\Gamma_A)}  \; d\Gamma_A
+\end{equation}
+
+
+Donde $\beta = \frac{1}{k_B T}$.
+
+\section{Energía Libre de Helmholtz}
+ 
+ El ensamble canónico tiene asociada la energía libre de Helmholtz.
+
+
+\begin{equation}
+\label{3.2.1} \mathcal{F}_c(T,N_A,V_A) = - k_B T \ln \mathbf{Z}_c
+\end{equation}
+
+
+\begin{equation}
+\label{3.2.2} \mathcal{F} = \mathcal{U} - TS
+\end{equation}
+
+Utilizando la transformación de Legendre dada por (\ref{3.2.2}) se procede a calcular la entropía, presión y potencial químico canónico.
+
+\begin{equation}
+\label{3.2.3} d \mathcal{F} = -SdT -p dV + \mu dN
+\end{equation}
+
+
+\begin{equation}
+\label{3.2.4} d \mathcal{F} = \frac{\partial \mathcal{F}}{\partial T} dT + \frac{\partial \mathcal{F}}{\partial V} dV + \frac{\partial \mathcal{F}}{\partial N} dN
+\end{equation}
+
+\begin{align}
+\label{3.2.5} S_c = -\frac{\partial \mathcal{F}_c}{\partial T} \\
+\label{3.2.6} P_c = -\frac{\partial \mathcal{F}_c}{\partial V_A} \\
+\label{3.2.7} \mu_c = \frac{\partial \mathcal{F}_c}{\partial N_A}
+\end{align}
+
+
+\section{Energía Interna}
+
+
+\begin{equation}
+\label{3.3.1} \mathcal{U} = \braket{\mathcal{H}_A} = \frac{1}{\mathbf{Z}_c} \int \mathcal{H}_A e^{-\beta \; \mathcal{H}_A} \; \frac{d  \Gamma_A}{h^{3N}N_A!}
+\end{equation}
+
+La energía interna es dada por la expresión (\ref{3.3.1}).
+
+\begin{align*}
+\mathcal{U} = -\frac{1}{\mathbf{Z}_c} \frac{\partial }{\partial \beta}  \int  e^{-\beta \; \mathcal{H}_A} \; \frac{d  \Gamma_A}{h^{3N}N_A!} 
+= -\frac{1}{\mathbf{Z}_c} \frac{\partial \mathbf{Z}_c}{\partial \beta}\\ \\ = - \frac{\partial \ln \mathbf{Z}_c}{\partial \beta} 
+= \frac{\partial \left(\beta \mathcal{F}_c\right) }{\partial \beta} =  \mathcal{F}_c + \beta\frac{\partial \mathcal{F}_c}{\partial \beta} \\ \\ = \mathcal{F}_c - T\frac{\partial \mathcal{F}_c}{\partial T} = \mathcal{F}_c + T S_c
+\end{align*}
+
+
+\begin{equation}
+\label{3.3.2} \mathcal{U} = \mathcal{F}_c + T S_c \quad \longrightarrow  \quad \textbf{Se recupera el resultado termodinámico}
+\end{equation}
+
+Se observa en la ecuación (\ref{3.3.2}) que se recupera la relación termodinámica entre la energía interna, energía libre de Helmholtz y entropía canónica.
+
+\section{Ejemplo: Gas Ideal}
+
+Nuevamente se considera el caso del gas ideal, que consiste de partículas que no interactúan. Para este caso el sistema tiene un volumen $V$, número de partículas $N$ y esta en contacto con un reservorio a temperatura $T$.
+
+
+\begin{equation}
+\label{3.4.1} \mathcal{H}(\Gamma) = \sum_{i=1}^{N} \frac{|\vec{P}_i|^2}{2m}
+\end{equation}
+
+
+\begin{equation}
+\label{3.4.2} \mathbf{Z}_c = \frac{1 }{h^{3N}N!} \int_{\mathbb{R}^{3N}}\int_{V^{N}}  e^{-\beta \sum_{i=1}^{N}\frac{|\vec{P}_i|^2}{2m}}  \;d \vec{r}_1 \dots d\vec{r}_N d \vec{p}_1 \dots \vec{p}_N
+\end{equation}
+
+
+El hamiltoniano esta dado por (\ref{3.4.1}) y la función de partición por (\ref{3.4.2}).
+
+
+
+\begin{equation*}
+  \frac{1 }{h^{3N}N!}\int_{\mathbb{R}^{3N}}\int_{V^{N}}  e^{-\beta \sum_{i=1}^{N}\frac{|\vec{P}_i|^2}{2m}}  \;d \vec{r}_1 \dots d\vec{r}_N d \vec{p}_1 \dots \vec{p}_N = \frac{1 }{h^{3N}N!}  \int_{V^{N}} d \vec{r}_1 \dots d\vec{r}_N \int_{\mathbb{R}^{3N}}e^{-\beta \sum_{i=1}^{N}\frac{|\vec{P}_i|^2}{2m}}  \;d \vec{p}_1 \dots \vec{p}_N
+\end{equation*}
+
+\begin{equation*}
+   = \frac{V^{N} }{h^{3N}N!}  \int_{\mathbb{R}^{3N}}\prod_{i=1}^{N}e^{-\beta\frac{|\vec{P}_i|^2}{2m}}  \;d \vec{p}_1 \dots \vec{p}_N = \frac{V^{N} }{h^{3N}N!}  \left(\int_{\mathbb{R}}e^{-\beta\frac{|\vec{P}_i|^2}{2m}}  \;d \vec{p}\right)^{3N}
+\end{equation*}
+
+
+\begin{equation*}
+   = \frac{V^{N} }{h^{3N}N!} \left(\sqrt{\frac{2 \pi m}{\beta}}\right)^{3N} = \frac{V^N}{N!} \left(\frac{2\pi m}{h^2 \beta}\right)^{\frac{3N}{2}} =  \frac{V^N}{\lambda^{3N} N!} 
+\end{equation*}
+
+Donde se define $\lambda$ como la longitud térmica de De Broglie.
+
+
+\begin{equation}
+\label{3.4.3}\lambda = \sqrt{\frac{h^2 \beta}{2\pi m}} \quad \longrightarrow \quad \textbf{ Longitud Térmica de De Broglie}
+\end{equation}
+
+
+\begin{equation}
+ \label{3.4.4}  \mathbf{Z}_c = \frac{V^N}{\lambda^{3N} N!} \quad \longrightarrow \quad \textbf{ Función de Partición Canónica para un Gas Ideal}
+\end{equation}
+
+
+Se observa que se recupera la ley de gases ideales:
+
+
+
+\begin{equation}
+ \label{3.4.5}  P_c = - \frac{\partial \mathcal{F}_c}{\partial V} = \frac{k_B\; N \;T }{V}\\[0.5cm]
+\end{equation}
+
+
+\section{Fluctuaciones \& Calor Especifico}
+
+
+
+La energía $\mathcal{H}_{A}(\Gamma_A)$ no esta fija y puede fluctuar alrededor de $\braket{\mathcal{H}_{A}}$.
+
+
+
+\begin{equation}
+ \label{3.5.1}  \braket{(\Delta\mathcal{H}_{A})^2} = \braket{\mathcal{H}_{A}^2} -\braket{\mathcal{H}_{A}}^2
+\end{equation}
+
+
+
+
+
+\begin{equation}
+ \label{3.5.2}  \braket{(\Delta\mathcal{H}_{A})^2} = - \frac{\partial\braket{\mathcal{H}_{A}}}{\partial \beta} = \frac{\partial^2  \ln\mathbf{Z}_c }{\partial \beta^2}
+\end{equation}
+
+Utilizando la definición termodinámica del calor especifico para un proceso reversible se procede a obtener una relación con las fluctuaciones de energía.
+
+
+
+\begin{equation}
+ \label{3.5.3}  C_V = \left(\frac{\delta Q_{rev}}{d T}\right)_{\substack{V = cte \\ N = cte}} 
+\end{equation}
+
+
+Por la primera ley de la termodinámica se tiene que:
+
+
+
+\begin{equation}
+ \label{3.5.4}  d \mathcal{U} = \delta Q_{rev}  \quad \longleftarrow \quad(dV =dN = 0)
+\end{equation}
+
+
+
+\begin{equation}
+ \label{3.5.5}  C_V = \frac{d \mathcal{U}}{d T} = \frac{d \braket{\mathcal{H}_A}}{d T} = -\frac{1}{k_B T^2} \frac{\partial \braket{\mathcal{H}_A}}{\partial \beta} = \frac{1}{k_B T^2} \left(  \braket{\mathcal{H}_{A}^2} -\braket{\mathcal{H}_{A}}^2 \right)
+\end{equation}
+
+
+En el límite termodinámico se tiene lo siguiente:
+
+
+\begin{align*}
+N \longrightarrow \infty \\
+\braket{\mathcal{H}_A} \propto N \\
+C_V \propto N \\
+  \braket{(\Delta\mathcal{H}_{A})^2} \propto N
+\end{align*}
+
+Juntando estas relaciones se obtiene la siguiente relación:
+
+
+\begin{equation}
+ \label{3.5.6}  \frac{\sigma_{\mathcal{H}_{A}}}{\braket{\mathcal{H}_A}} = \frac{\sqrt{\braket{(\Delta\mathcal{H}_{A})^2}}}{\braket{\mathcal{H}_A}} \propto \frac{1}{\sqrt{N}} \longrightarrow 0
+\end{equation}
+
+Por lo que en el límite termodinámico las fluctuaciones alrededor del valor promedio son muy pequeñas en comparación con el valor promedio. 
+
+\chapter{Ensamble Gran Canónico}
+
+
+Un ensamble gran canónico consiste en un sistema $\encircle{A}$ en contacto con un reservorio $\encircle{B}$ y cumplen con las siguientes características:
+
+
+\begin{figure}[H]
+ \label{fig2}	\centering
+ 	\includegraphics[scale = 0.27]{grancanonico}
+ 	\caption{Ensamble Canónico}
+ 	\label{grancanonico}
+ \end{figure}
+ 
+
+\begin{itemize}
+\item El sistema conjunto $\encircle{A} + \encircle{B} $ es un sistema aislado.
+\item El sistema total tiene una energía total $E_T$. Hay intercambio de energía entre $\encircle{A}$ y $ \encircle{B}  $.
+\item Tiene un volumen $V$.
+\item Tiene un potencial químico $\mu$.
+\item Tiene una temperatura $T$.
+\item Las variables de estado son $T$,$V$ \& $\mu$.
+\end{itemize}
+
+\section{Función de Partición Gran Canónica}
+
+
+
+\begin{equation}
+\label{4.1.1} \rho_A(\Gamma_A,N) = \frac{1}{h^{3N}N!\; \mathbf{Z}_g} e^{-\beta \mathcal{H}_A + \beta \mu N}
+\end{equation}
+
+
+
+\begin{equation}
+\label{4.1.2} \mathbf{Z}_g(T,V_A,\mu) \equiv 1 +  \sum_{N=1}^{\infty}   \frac{1}{h^{3N}N!} \int e^{-\beta \mathcal{H}_A + \beta \mu N} d\vec{p}_1 \dots d\vec{p}_N d\vec{r}_1 \dots d\vec{r}_N
+\end{equation}
+
+De forma análoga al conjunto canónico se obtiene la densidad de probabilidad (\ref{4.1.1}) y la función de partición gran canonica (\ref{4.1.2}).
+
+\section{Gran Potencial}
+
+
+
+\begin{equation}
+\label{4.2.1} \Omega = -k_B T \ln \mathbf{Z}_g
+\end{equation}
+
+\begin{equation}
+\label{4.2.2} \Omega = \mathcal{F} - \mu N
+\end{equation}
+
+\begin{equation}
+\label{4.2.3} d\Omega = \frac{\partial \Omega}{\partial T} dT + \frac{\partial \Omega}{\partial V} dV + \frac{\partial \Omega}{\partial \mu} d\mu =-S dT - P dV - N d\mu 
+\end{equation}
+
+Las relaciones termodinámicas (\ref{4.2.1} - \ref{4.2.3}) permiten calcular las siguientes cantidades $S,P \& N$ a partir del gran potencial.
+
+\begin{align}
+    S_g = -\frac{\partial \Omega}{\partial T}\\
+    P_g = -\frac{\partial \Omega}{\partial V}\\
+    N_g = -\frac{\partial \Omega}{\partial \mu}
+\end{align}
+
+\chapter{Equivalencia entre los Ensambles Estadísticos}
+
+\section{Equivalencia Microcanonica - Canónico en el Límite Termodinámico}
+
+
+
+\begin{equation}
+\label{5.2.1}  n(E) = \frac{\mathbf{Z}_m }{\Delta E}
+\end{equation}
+
+\begin{equation}
+\label{5.2.2} \mathbf{Z}_c = \int_{E_0}^{\infty} dE \; n(E) e^{-\beta E}
+\end{equation}
+
+
+
+
+Se parte de la densidad de estados para el conjunto microcanónico y la función de partición canónica como una integral sobre la densidad de estados y su peso.
+
+
+
+\begin{equation}
+\label{5.2.3} \mathbf{Z}_c = \int_{E_0}^{\infty} \frac{dE}{\Delta E} \; \mathbf{Z}_m e^{-\beta E}
+\end{equation}
+
+\begin{align*}
+= \int_{E_0}^{\infty} \frac{dE}{\Delta E} \;  e^{-\frac{1}{k_B} \left(\frac{E}{T} - S_m(E,V,N)\right)} \\
+ \int_{E_0}^{\infty} \frac{dE}{\Delta E} \;  e^{-\frac{N}{k_B} \left(\frac{\epsilon}{T} - s_m(\epsilon,n)\right)}  
+\end{align*}
+
+
+Se procede a aproximar la integral con el método de Laplace.
+
+
+\begin{equation}
+\label{5.2.4} \frac{\partial}{\partial \epsilon} \left(\epsilon - T s_m(\epsilon,n)\right) = 0
+\end{equation}
+
+Se busca el máximo del exponente (\ref{5.24})
+
+\begin{equation}
+\label{5.2.5} 1 - T \frac{\partial S_m}{\partial E}(E^*,V,N) = 0 \quad \longleftrightarrow \quad 1 = \frac{T}{T_m}
+\end{equation}
+
+La condición que maximiza la función en cuestión resulta ser que la temperatura canónica sea igual a la microcanónica. La energía para dicho caso es $E^*$.
+
+ 
+\begin{equation}
+\label{5.2.6}E - T S_m(E,V,N) = E^* - T S_m(E^*,V,N) + (E-E^*) \left.\frac{\partial (E-TS_m)}{\partial E}\right|_{E=E^*}  + \frac{1}{2}(E-E^*)^2 \left.\frac{\partial^2 (E-TS_m)}{\partial E^2}\right|_{E=E^*} + \dots
+\end{equation}
+
+El término lineal de la expansión (\ref{5.2.6}) es nulo por que esta expandiendo alrededor de un máximo.
+\begin{equation}
+\label{5.2.7}\frac{\partial^2 (E-S_m)}{\partial E^2} = - T\frac{\partial^2 S_m}{\partial E^2} 
+\end{equation}
+
+
+
+\begin{equation}
+\label{5.2.8} \mathbf{Z}_c \approx e^{-\beta \left( E^* - T S_m(E^*,V,N)\right)} \int_{E_0}^{\infty} \frac{d E}{\Delta E}  e^{\frac{1}{k_B} \frac{\partial^2 S_m(E^*,V.N)}{\partial E^2}\frac{(E-E^*)^2}{2}}
+\end{equation}
+
+La integral (\ref{5.2.8}) se puede aproximar a una integral en todo $\mathbb{R}$.
+
+\begin{equation}
+\label{5.2.9} \mathbf{Z}_c \approx e^{-\beta \left( E^* - T S_m(E^*,V,N)\right)} \int_{\mathbb{R}} \frac{d E}{\Delta E}  e^{\frac{1}{k_B} \frac{\partial^2 S_m(E^*,V.N)}{\partial E^2}\frac{(E-E^*)^2}{2}}
+\end{equation}
+
+
+\begin{equation}
+\label{5.2.10} \mathbf{Z}_c \approx e^{-\beta \left( E^* - T S_m(E^*,V,N)\right)} \sqrt{\frac{2\pi}{\frac{1}{k_B}\left|\frac{\partial^2 S_m(E,V,N)}{\partial E^2} \right|_{E=E^*}}}
+\end{equation}
+
+
+\begin{equation}
+\label{5.2.11} \ln\mathbf{Z}_c \approx -\beta \left( E^* - T S_m(E^*,V,N)\right) + \ln \left( \sqrt{\frac{2\pi}{\frac{1}{k_B}\left|\frac{\partial^2 S_m(E,V,N)}{\partial E^2} \right|_{E=E^*}}} \right)
+\end{equation}
+
+El argumento del logaritmo natural crece más despacio que $N$, por lo que en el límite termodinámico se obtiene:
+
+
+\begin{equation}
+\label{5.2.12} \mathcal{F}_c(T,V,N) =  E^* - T S_m(E^*,V,N) = \mathcal{F}_m(E^*,V,N)
+\end{equation}
+
+Que implica que en el límite termodinámico son equivalentes los conjuntos microcanónico y canónico.
+
+
+\end{document}

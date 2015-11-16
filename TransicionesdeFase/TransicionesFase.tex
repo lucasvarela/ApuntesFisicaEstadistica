@@ -1,0 +1,1748 @@
+\documentclass[oneside]{book}
+\usepackage{braket}
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{empheq}
+\usepackage{enumitem}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{calligra}
+\usepackage{algpseudocode} 
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\textwidth}{490pt}
+\setlength{\topmargin}{-40pt}
+\addtolength{\hoffset}{-0.3cm}
+\addtolength{\textheight}{4cm}
+\usepackage{amssymb}
+\usepackage{graphicx} % Required for the inclusion of images
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{tikz}
+
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale = 0.42]{lcaoderecha}
+%	\caption{Eletr\'on ligado solo al núcleo derecho}
+%	\label{fig1}
+%	\end{figure}
+
+
+
+
+\begin{document}
+%\tableofcontents
+%\pagebreak
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\textsc{\LARGE Física Estadística}\\[0.5cm]
+\textsc{\LARGE Teoría Cinética de Gases}\\[0.5cm]
+\textsc{\LARGE Notas de Clase}\\[0.5cm]
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{l r}
+\large
+Notas de Clase del Profesor: Gabriel Téllez% Instructor/supervisor
+\normalsize
+\end{tabular}
+\end{center} %\\[0.5cm]
+
+
+
+\textbf{\large Estas son las notas de clase tomadas en el semestre 2014-2  en la clase Física Estadística dictada por el profesor Gabriel Téllez. Estas notas son escritas por un alumno y pueden contener errores, uselas con precauci\'on.}\\[0.1cm]
+
+
+\begin{figure}[H]
+   \centering
+    	\includegraphics[scale = 0.57]{hist}\\[0.5cm]
+        \end{figure} 
+
+
+
+ \begin{figure}[H]
+  	\centering
+  	\includegraphics[scale = 0.57]{remo}
+  \end{figure}
+
+
+
+
+
+
+\tableofcontents
+\pagebreak
+
+
+\chapter{Transición de Fase}
+
+
+Un sistema tiene una transición de fase de orden $n$ en un punto $\Gamma_0$ si $\mathcal{F}$ tiene una derivada enésima singular en ese punto.  
+
+
+\begin{align*}
+1^{er} \text{ Orden}  \longrightarrow \left.\frac{\partial F}{\partial x}\right|_{\Gamma_0} = \infty\\
+2^{ndo} \text{ Orden}  \longrightarrow \left.\frac{\partial^2 F}{\partial x^2}\right|_{\Gamma_0} = \infty\\
+\vdots \qquad \quad\\
+\text{n Orden}  \longrightarrow \left.\frac{\partial^n F}{\partial x^n}\right|_{\Gamma_0} = \infty
+\end{align*}
+
+Ejemplos:\\
+
+En el modelo de Ising bajo la aproximación de campo medio hay transiciones de primer y segundo orden ya que en algunos puntos la magnetización y la susceptibilidad magnética son singulares.
+
+
+\begin{equation*}
+m \propto \frac{\partial \mathcal{F}}{\partial h}  
+\end{equation*}
+
+\begin{equation*}
+\chi \propto \frac{\partial^2 \mathcal{F}}{\partial h^2}  
+\end{equation*}
+\chapter{Sistemas Magnéticos}
+
+
+\section{Introducción}
+
+\begin{figure}[H]
+ \label{figpara}	\centering
+ 	\includegraphics[scale = 0.27]{paramagnetico}
+ 	\caption{Estado Paramagnético}
+ 	\label{para}
+ \end{figure}
+
+\begin{equation}
+\label{1.1.1} \sum_{i} \vec{m}_i = 0
+\end{equation}
+
+Un sistema paramagnético tiene desordenados los espines de tal forma que se cumple aproximadamente la relación (\ref{1.1.1}), donde $\vec{m_i}$ es el momento magnético del i-esimo átomo. Por lo que para este estado no hay un campo neto (macroscópico).
+
+\begin{figure}[H]
+ \label{figferro}	\centering
+ 	\includegraphics[scale = 0.27]{ferromagnetico}
+ 	\caption{Estado Ferromagnético}
+ 	\label{ferro}
+ \end{figure}
+
+A bajas temperaturas los espines se pueden organizar, formando un estado ferromagnetico como se muestra en la figura (\ref{ferro}). En este caso hay un campo macroscópico.\\
+
+
+
+\begin{equation}
+\label{1.1.2} \mathcal{U}_{i}  = -\vec{m}_i \cdot \vec{H}
+\end{equation}
+
+
+Si  al sistema se le hace interactuar con un campo externo $\vec{H}$, el aporte a la energía de cada átomo esta dado por (\ref{1.1.2})
+
+
+\begin{figure}[H]
+ \label{figmin}	\centering
+ 	\includegraphics[scale = 0.27]{minima}
+ 	\caption{Estado de mínima energía para el átomo en el campo $\vec{H}$}
+ 	\label{min}
+ \end{figure}
+ 
+ Un espin esta en su estado de mínima energía cuando esta paralelo al campo magnético externo.
+ 
+ \begin{figure}[H]
+  \label{figmax}	\centering
+  	\includegraphics[scale = 0.27]{maximo}
+  	\caption{Estado de máxima energía para el átomo en el campo $\vec{H}$}
+  	\label{max}
+  \end{figure}
+ 
+
+ Un espin esta en su estado de máxima energía cuando esta anti-paralelo al campo magnético externo.
+ 
+ 
+ \begin{equation}
+ \label{1.1.3} \mathcal{U}_{i,j}  = -  \tilde{J} \;\vec{m}_i \cdot \vec{m}_j
+ \end{equation}
+ 
+ 
+ Además de la interacción con el campo externo, hay interacción entre los momentos magnéticos de diferentes átomos (\ref{1.1.3}). $\tilde{J}$ esta relacionado con las propiedades cuánticas del material.
+ 
+ 
+ \begin{equation}
+  \label{1.1.4} \tilde{J} > 0  \longrightarrow \textbf{Material Ferromagnético}
+  \end{equation}
+  
+ 
+  \begin{equation}
+   \label{1.1.5} \tilde{J} < 0  \longrightarrow \textbf{Material Anti-Ferromagnético}
+   \end{equation}
+ 
+\begin{equation}
+   \label{1.1.6}  \vec{m}_i = g \;\mu_B \;\underset{\rightarrow}{\widehat{{S}_i}}
+   \end{equation}
+   
+El momento magnetico de átomo esta relacionado con el espín como se muestra en la ecuación (\ref{1.1.6}), donde $g$ es el factor gyromagnetico y $\mu_B$ el magnetón de Bohr.
+
+\begin{equation}
+   \label{1.1.7}  \mu_B = \frac{e \hbar}{2m}
+   \end{equation}
+   
+El magnetón de Bohr esta relacionado con la masa del átomo y la carga elemental.
+\subsection{Modelo de Heisenberg}
+ 
+ 
+ \begin{equation}
+ \label{1.1.8} \widehat{H} = - \tilde{\tilde{J}} \sum_{\braket{i,j}} \underset{\rightarrow}{\widehat{S}_i} \cdot \underset{\rightarrow}{\widehat{S}_j} - \sum_{i=1}^{N} \underset{\rightarrow}{\widehat{S}_i} \cdot \underset{\rightarrow}{\tilde{\tilde{h}}} 
+ \end{equation}
+ 
+El modelo de Heisenberg tiene como hamiltoniano la expresión (\ref{1.1.7}), donde en la primera suma la notación corresponde a sumar solo parejas vecinas inmediatas. El segundo término da cuenta de la interacción con un campo externo $\vec{H}$, donde $  \underset{\rightarrow}{\tilde{\tilde{h}}} $ ha absorbido las constantes de acoplamiento espín-campo externo. De igual forma $\tilde{\tilde{J}}$ absorbe las constantes de acoplamiento espín-espín.
+
+\begin{equation}
+\label{1.1.9} \underset{\rightarrow}{\widehat{S}_i} = \left( \widehat{S}_{x_i} ,\;\widehat{S}_{y_i} ,\;\widehat{S}_{z_i}  \right) 
+\end{equation}
+
+El vector espín $ \underset{\rightarrow}{\widehat{S}_i}$, es la notación para las componentes del espín como se muestra en (\ref{1.1.9}).
+
+
+\begin{equation}
+\label{1.1.10} \underset{\rightarrow}{\widehat{S}_i}\cdot \underset{\rightarrow}{\widehat{S}_j} = \widehat{S}_{x_i} \widehat{S}_{x_j} + \widehat{S}_{y_i}\widehat{S}_{y_j} + \widehat{S}_{z_i} \widehat{S}_{z_j}
+\end{equation}
+
+Por la incertidumbre asociada al operador espín (por ejemplo: si se conoce bien $\widehat{S}_{x_i}$ no se conoce bien las demás), es difícil calcular la energías permitidas para este hamiltoniano.
+
+
+\subsection{Modelo de Ising(Lenz)} 
+
+
+ \begin{equation}
+ \label{1.1.11} \widehat{H} = - \tilde{\tilde{J}} \sum_{\braket{i,j}} \widehat{S}_{z_i} \cdot \widehat{S}_{z_j} - {\tilde{\tilde{h}}}  \sum_{i=1}^{N} \underset{\rightarrow}{\widehat{S}_{z_i}} 
+ \end{equation}
+ 
+ 
+ 
+ El modelo de Ising tiene como hamiltoniano a la expresión (\ref{1.1.11}). Los valores propios para el operador espín $\widehat{S}_z$, son $S_z \in \{ -s,-s+1,\dots,s-1,s  \}$, donde $s$ es el espín del átomo.
+ 
+ \begin{align}
+ \label{1.1.12} \textbf{Espín 1/2: } \qquad S_z \in \left\{ -\frac{1}{2},\frac{1}{2} \right\} \\
+   \label{1.1.13} \textbf{Espín 1: } \qquad S_z \in \{-1,0,1\}
+ \end{align}
+ 
+ \textbf{Para Espín 1/2:}
+ 
+ 
+ 
+ \begin{equation}
+  \label{1.1.14} E_{s_1,s_2,\dots,s_N} = - J \sum_{\braket{i,j}} s_i s_j - h \sum_{i=1}^{N} s_i 
+  \end{equation}
+  
+ Las energías propias para espín 1/2 están dadas por (\ref{1.1.14}), donde se introduce la notación $s_i \in \{ -1,1\}$. Las constantes $h$ y $J$ ya tienen todo el resto de la información de acoplamiento entre espines y espines campo magnético respectivamente.
+ 
+ 
+ \begin{align*}
+ s_1 \in \{ -1,1\}\\
+s_2 \in \{ -1,1\}\\
+\vdots \qquad \quad\\
+s_N \in \{ -1,1\}
+ \end{align*}
+ 
+ 
+ Hay $2^N$ estados posibles para el sistema con espín 1/2 en el modelo de Ising. Sin embargo existen estados degenerado, es decir que tiene la misma energía.
+ 
+ 
+ 
+ \section{Propiedades Estadísticas}
+
+
+
+
+ \begin{equation}
+  \label{1.1.15} \mathbf{Z}_c(T,h,N) = \sum_{s_1 = \pm 1}\dots \sum_{s_N = \pm 1} e^{-\beta E_{s_1,s_2,\dots,s_N}} 
+  \end{equation}
+  
+
+
+ \begin{equation}
+  \label{1.1.16} \mathbf{Z}_c(T,h,N) = \sum_{s_1 = \pm 1}\dots \sum_{s_N = \pm 1} e^{\beta  J \sum_{\braket{i,j}} s_i s_j + \beta h \sum_{i=1}^{N} s_i } 
+  \end{equation}
+  
+
+La función de partición canónica esta dada por las expresiones (\ref{1.1.15} ) \& (\ref{1.1.16}).
+
+
+
+
+
+ \begin{equation}
+  \label{1.1.17} \vec{m} = \left< \sum_{i=1}^{N} \vec{m}_i\right>
+  \end{equation}
+
+
+Se define la cantidad $\vec{m}$, como el promedio de la suma de los momentos magnéticos (\ref{1.1.17}).
+
+
+
+ \begin{equation}
+  \label{1.1.18} \vec{m} = g \mu_{B}   \left<  \sum_{i=1}^{N} \vec{s}_i \right>
+  \end{equation}
+
+Para un material uniforme $\vec{m}$ se puede escribir como en la ecuación (\ref{1.1.18}).
+
+
+
+ \begin{equation}
+  \label{1.1.19}  \braket{S} \equiv   \left<  \sum_{i=1}^{N} {s}_i \right>
+  \end{equation}
+
+
+ \begin{equation}
+  \label{1.1.20}  \braket{S}=   \frac{1}{\mathbf{Z}_c} \sum_{s_1 = \pm 1}\dots \sum_{s_N = \pm 1} e^{-\beta E_{s_1,s_2,\dots,s_N}} \left(\sum_{i=1}^{N} {s}_i\right)
+  \end{equation}
+
+
+
+ \begin{equation}
+  \label{1.1.21}  \braket{S}= \frac{1}{\beta} \frac{\partial \mathbf{Z}_c}{\partial h}
+  \end{equation}
+
+Se puede ver en la ecuación (\ref{1.1.20}) que $\braket{S}$ se puede escribir en función de la función de partición (\ref{1.1.21}).
+
+ \begin{equation}
+  \label{1.1.22}  M = \braket{S}
+  \end{equation}
+
+La magnetización(imanación) esta dada por (\ref{1.1.22}).
+ \begin{equation}
+  \label{1.1.23}  \mathcal{F}({T,h,N}) = -k_B T \ln \mathbf{Z}_c
+  \end{equation}
+
+
+ \begin{equation}
+  \label{1.1.24}  d\mathcal{F} = \frac{\partial \mathcal{F}}{\partial T} dT +\frac{\partial \mathcal{F}}{\partial h} dh +\frac{\partial \mathcal{F}}{\partial N} dN
+    \end{equation}
+
+
+ \begin{equation}
+  \label{1.1.25}  d\mathcal{F} = -\mathcal{S} dT -Mdh +\mu dN
+    \end{equation}
+
+
+
+
+Utilizando las relaciones termodinámicas para la energía libre de Helmholtz se obtienen relaciones para calcular $\mathcal{S}$(entropía), $M$ y $\mu$ a partir de $\mathcal{F}$.
+
+
+
+
+
+ \begin{equation}
+  \label{1.1.26} \chi = \frac{1}{N} \frac{\partial M}{\partial h}
+    \end{equation}
+
+
+
+ \begin{equation}
+  \label{1.1.27} \chi = \frac{\beta}{N} \left( \braket{S^2} -\braket{S}^2 \right)
+    \end{equation}
+
+
+La susceptibilidad magnética esta dada por la expresión (\ref{1.1.26}), donde se divide por $N$ para que sea una cantidad intensiva.
+
+
+\section{Material Paramagnético $J=0$}
+
+
+
+ \begin{equation}
+  \label{1.3.1} E_{s_1,\dots,s_N} = -h \sum_{i=1}^{N} s_i
+    \end{equation}
+
+Cuando el material es paramagnetico se tiene $J=0$ por lo que las energías propias solo dependen de la interacción entre el campo externo y los espines (\ref{1.3.1}).
+
+ \begin{equation}
+  \label{1.3.2} \mathbf{Z}_c = \sum_{s_1=\pm 1} \dots \sum_{s_N=\pm 1}  e^{\beta h s_1} \dots e^{\beta h s_N} = \prod_{i=1}^{N} \left(\sum_{s_i=\pm 1}^{N} e^{\beta h s_i} \right)
+    \end{equation}
+
+
+
+
+ \begin{equation}
+  \label{1.3.3} \mathbf{Z}_c =  \prod_{i=1}^{N} \left( 2 \cosh (\beta h)\right) =  \left( 2 \cosh (\beta h)\right)^N
+    \end{equation}
+
+
+
+Como no hay interacción entre vecinos la función de partición se convierte en un producto de las contribuciones individuales, dando como resultado la expresión (\ref{1.3.3}).
+
+
+
+
+ \begin{equation}
+  \label{1.3.4} M =  N \tanh (\beta h)
+    \end{equation}
+
+
+
+ \begin{equation}
+  \label{1.3.5} \chi_0 = \frac{1}{N} \left(\frac{\partial M}{\partial h}\right)_{h=0}
+    \end{equation}
+
+
+La susceptibilidad en campo nulo esta dada por la expresión (\ref{1.3.5}).
+ \begin{equation}
+  \label{1.3.6} \frac{M}{N} =   \tanh (\beta h) \quad\substack{\xrightarrow{\hspace*{2cm}} \\ h \longrightarrow 0} \quad
+  \beta h + O\left( (\beta h)^3\right)
+     \end{equation}
+
+
+
+
+ \begin{equation}
+  \label{1.3.7} \chi = \beta  \propto \frac{1}{T}
+    \end{equation}
+
+Mirando el comportamiento de la susceptibilidad cuando el campo externo tiene a ser 0, se observa que la susceptibilidad es inversamente proporcional a la temperatura. Por lo que es más fácil imanar un material paramagnético a temperaturas bajas en este modelo.
+
+
+\section{Aproximación de Campo Medio}
+
+
+Se quiere tratar ahora el caso en el que $J\neq 0$. El modelo de Ising es demasiado difícil por lo que se busca una aproximación que simplifique el problema.
+
+
+
+ \begin{equation}
+  \label{1.4.1} -J \sum_{\braket{i,j}} s_i s_j = -\sum_{i} s_i \sum_{j \text{vecino de} i} s_j J \approx - \sum_{i} s_i \left< \sum_{j} J s_j \right>  = - J  m  \; \sum_{i} s_i \textbf{\c{c}}_i
+    \end{equation}
+
+
+
+ \begin{equation}
+  \label{1.4.2}  m = \braket{s_j} = \frac{1}{\mathbf{Z}_c} \sum_{s_1 =\pm 1}\dots \sum_{s_j =\pm 1} \dots \sum_{s_N =\pm 1} s_j e^{-\beta E}
+    \end{equation}
+
+ \begin{equation}
+  \label{1.4.3}  \textbf{\c{c}}_i \; = \text{\# número de vecinos de } i
+    \end{equation}
+
+
+
+Si se asume que todos tienen la misma cantidad de vecinos, se obtiene la siguiente expresión para la aproximación de campo medio:
+
+
+
+
+
+ \begin{equation}
+  \label{1.4.4} -J \sum_{\braket{i,j}} s_i s_j \simeq- J  m \textbf{\c{c}} \; \sum_{i} s_i  \qquad \text{Aproximación de Campo Medio}
+    \end{equation}
+
+
+
+
+
+ \begin{equation}
+  \label{1.4.5} \mathbf{Z}_{c} = \sum_{s_1 =\pm 1}\dots \sum_{s_N =\pm 1} e^{-\beta(Jm \textbf{\c{c}}+h) \sum_{i}s_i}
+    \end{equation}
+
+La función de partición en la aproximación de campo medio es dada por la expresión (\ref{1.4.5}).
+
+
+
+
+ \begin{equation}
+  \label{1.4.6} \mathbf{Z}_{c} = 2^N [\cosh(\beta(Jm \textbf{\c{c}}+h))]^N
+    \end{equation}
+
+
+Utilizando la expresión (\ref{1.4.2})  y (\ref{1.4.6}) se puede obtener una ecuación para $m$.
+
+
+
+ \begin{equation}
+  \label{1.4.7} m = \tanh(\beta(Jm \textbf{\c{c}}+h))
+    \end{equation}
+
+La expresión (\ref{1.4.7}) es una ecuación de auto-consistencia para $m$.\\
+
+\textbf{Solución cuando $h=0$}
+
+ \begin{equation}
+  \label{1.4.10} m_0 = \tanh(\beta Jm_0 \textbf{\c{c}})
+    \end{equation}
+
+
+Para el caso en el que no hay campo externo la ecuación de auto-consistencia esta dada por (\ref{1.4.10})
+ \begin{align}
+  \label{1.4.8} y(m_0) = \tanh(\beta Jm_0 \textbf{\c{c}})\\
+  \label{1.4.9} f(m_0)= m_0 
+    \end{align}
+
+
+La solución de esta ecuación son las intersecciones de las curvas $y(m_0)$(\ref{1.4.8}) y $f(m_0)$ (\ref{1.4.9}).
+ 
+ \begin{figure}[H]
+  \label{figcero}	\centering
+  	\includegraphics[scale = 0.27]{hcero}
+  	\caption{Curva azul con $T<T_c$, curva negra con $T>T_c$}
+  	\label{cero}
+  \end{figure}
+  
+  
+En la figura (\ref{hcero}) se ven los dos escenarios posibles. Para temperaturas muy altas solo esta la solución $m_0=0$. Para temperaturas bajas existe magnetización espontánea $m_0 \neq 0$, que sería el caso de la curva azul de la figura(\ref{hcero}).
+
+\begin{align}
+\label{1.4.11} \textbf{Fase Paramagnética } \longleftrightarrow \frac{d y}{dm_0} < 1 \\
+\label{1.4.12} \textbf{Fase Ferromagnética } \longleftrightarrow \frac{d y}{dm_0} > 1
+\end{align}
+
+La fase en que $m_0=0$ únicamente se conoce como paramagnética y ocurre cuando se cumple la condición (\ref{1.4.11}). La fase en que hay imanación exponente es conocida como ferromagnética y ocurre cuando se cumple la condición (\ref{1.4.12}).
+\begin{equation}
+\label{1.4.13} T_c = \frac{J\textbf{\c{c}}}{k_B}
+\end{equation}
+
+La temperatura crítica $T_c$, para la cual se pasa de la fase paramagnética a la ferromagnética (o viceversa) se obtiene de solucionar la ecuación $y'(0)=1$. Esta temperatura es dada por (\ref{1.4.13}).
+
+
+
+
+\begin{align}
+\label{1.4.14} T<T_c \\
+\label{1.4.15}  \frac{|T-T_c|}{T_c} \ll 1\\
+\label{1.4.16} |m_0| \ll 1 
+\end{align}
+Ahora se desea conocer el comportamiento de $m_0$ para temperaturas cercanas a la temperatura crítica pero menores a ella (\ref{1.4.14} - \ref{1.4.15} ). Para esas temperatura se tiene además que  (\ref{1.4.16}).    
+    
+ \begin{equation}
+ \label{1.4.17} \tanh x = x -\frac{x^3}{3} + O(x^5)
+  \end{equation}   
+    
+    
+   \begin{equation}
+   \label{1.4.18} m_0 =\tanh\left(\beta J\textbf{\c{c}}m_0 \right) = \beta J\textbf{\c{c}}m_0  -\frac{\left(\beta J\textbf{\c{c}}m_0 \right)^3}{3} + O(\left(\beta J\textbf{\c{c}}m_0 \right)^5)
+    \end{equation}   
+      
+ 
+    \begin{equation}
+    \label{1.4.19} 1 = \beta J\textbf{\c{c}}  -\frac{m_0^2\left(\beta J\textbf{\c{c}}\right)^3}{3} 
+     \end{equation}   
+       
+Como la temperatura es cercada a la temperatura crítica se tiene que $ \beta J\textbf{\c{c}} \approx 1 $. Además por la condición    (\ref{1.4.16}) se tiene que $\beta J\textbf{\c{c}} \ll 1$. Con esto se puede proceder a usar la expansión de Maclaurin para la tangente hiperbólica (\ref{1.4.17}), se obtiene (\ref{1.4.18}). Tomando la expansión hasta tercer orden se obtiene la expresión (\ref{1.4.19}).        
+
+
+
+\begin{equation}
+      \label{1.4.20} 1  =  \frac{J\textbf{\c{c}}}{k_B T_c}
+     \end{equation}
+
+
+\begin{equation}
+      \label{1.4.21} \left(\beta   J\textbf{\c{c}}\right)^3 m_0^2 = 3 ( \beta J\textbf{\c{c}} -1) = 3\frac{J\textbf{\c{c}}}{k_B } \left(\frac{1}{T} - \frac{1}{T_c}\right) =  3\frac{J\textbf{\c{c}}}{k_B T_c } \left( \frac{T_c - T}{T}\right) = 3\left( \frac{T_c - T}{T}\right)
+     \end{equation}   
+
+La ecuación (\ref{1.4.20}) permite escribir el número 1 de forma útil para reescribir la ecuación de auto-consistencia como se muestra en (\ref{1.4.21}) .
+
+\begin{equation}
+      \label{1.4.22}  \frac{T_c - T}{T} =  \frac{T_c - T}{T_c} +   O\left(\left( \frac{T_c - T}{T_c}\right)^2\right) 
+     \end{equation}   
+
+
+
+\begin{equation}
+      \label{1.4.23} \left(\beta   J\textbf{\c{c}}\right) = 1 + O\left(\left( \frac{T_c - T}{T_c}\right)\right) 
+     \end{equation}   
+
+
+\begin{equation}
+      \label{1.4.24} \left(\beta   J\textbf{\c{c}}\right)^3 m_0^2 = m_0^2 \left(1 + O\left(\left( \frac{T_c - T}{T_c}\right)\right) \right) \simeq m_0^2
+     \end{equation}   
+    
+ Con la relación (\ref{1.4.22}) se obtiene la ecuación (\ref{1.4.23}). Despreciando los términos de segundo orden en el parámetro pequeño $(T_c-T)/T_c$ se obtiene (\ref{1.4.24}).   
+    \begin{equation}
+          \label{1.4.25} m_0^2 = 3 \left( \frac{T_c - T}{T_c}\right) + O\left(\left( \frac{T_c - T}{T_c}\right)^2\right) 
+         \end{equation}   
+    
+El comportamiento a primer orden en $(T_c-T)/T_c$ de la $m$ cerca a la temperatura crítica estada dado por (\ref{1.4.25}). 
+      \begin{equation}
+            \label{1.4.26} m_0 = \pm \sqrt{3 \left( \frac{T_c - T}{T_c}\right)} 
+           \end{equation}     
+    
+ En (\ref{1.4.26}) se puede ver que $m$ presenta una singularidad en la temperatura crítica. Esto evidencia que en $T_c$ hay una transición de fase de segundo orden.
+    
+     \begin{figure}[H]
+      \label{figmo}	\centering
+      	\includegraphics[scale = 0.27]{m0}
+      	\caption{Magnetización espontánea ($h=0$)}
+      	\label{mo}
+      \end{figure}
+ 
+ 
+ En la figura  (\ref{mo}) se muestra el comportamiento de $m_0$ para temperatura menores a $T_c$.\\
+ 
+\textbf{Solución para $h\neq 0$:}
+
+
+   \begin{figure}[H]
+    \label{fignocero}	\centering
+    	\includegraphics[scale = 0.27]{hnocero}
+    	\caption{$h\neq 0$ desplaza la función $y(m)$}
+    	\label{nocero}
+    \end{figure} 
+    
+Para el caso $h\neq0$, la curva $y(m)$ para la misma temperatura se desplaza como se muestra en la gráfica (\ref{nocero}).     
+
+
+\begin{figure}[H]
+    \label{fighist}	\centering
+    	\includegraphics[scale = 0.27]{hist}
+    	\caption{$m$ en función del campo externo}
+    	\label{hist}
+    \end{figure} 
+
+En la figura (\ref{hist}) se muestra la magnetización en función del campo externo. Para determinar el valor de $m(h=0)$ se tiene que estudiar la dinámica del sistema.
+
+\chapter{Liquido-Gas}
+
+
+
+Para que pueda haber una transición de gas a liquido, debe haber una interacción atractiva entre las moléculas del gas. Por lo que se debe recordar que en este capitulo se están tratando gases no ideales.
+
+
+\begin{equation}
+\label{2.1} \mathcal{H} = \sum_{i=1}^{N}\frac{|\vec{p}_i|^2}{2m} + \mathop{\sum\sum}_{1\leq i < j \leq N} \Phi(|\vec{r}_i-\vec{r}_j|)
+\end{equation}
+
+
+El hamiltoniano para el sistema a considerar sería de la forma (\ref{2.1}). Sin embargo, se utiliza la aproximación de campo medio para simplificar el problema:
+
+
+
+
+\begin{equation}
+\label{2.2}   \mathcal{V}_{CM}(\vec{r}_i) = \left<  \sum_{\substack{j=1 \\ j\neq i}}^{N} \Phi(|\vec{r}_i-\vec{r}_j|) \right>
+\end{equation}
+
+
+
+El potencial promedio sentido por la partícula $i$ es dado por (\ref{2.2}).
+
+
+
+\begin{equation}
+\label{2.3}   \mathop{\sum\sum}_{1\leq i < j \leq N} \Phi(|\vec{r}_i-\vec{r}_j|)\xrightarrow{\text{Aproximación de Campo Medio}} \sum_{i=1}^{N}\mathcal{V}_{CM}(\vec{r}_i)
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{2.4} \mathcal{H} \approx \mathcal{H}_{CM}  = \sum_{i=1}^{N}\frac{|\vec{P}_i|^2}{2m} + \sum_{i=1}^{N}\mathcal{V}_{CM}(\vec{r}_i)
+\end{equation}
+
+Cambiando el hamiltoniano complicado por el de la aproximación de campo medio, se obtiene (\ref{2.4}).
+
+
+
+\begin{equation}
+\label{2.5} \mathbf{Z}_c \approx \frac{1}{N! h^{3N}} \left( \int d\vec{r}_1 \dots d\vec{r}_N\; e^{-\beta\sum_{i=1}^{N}\mathcal{V}_{CM}(\vec{r}_i)}\right)\left( \int d\vec{p}_1 \dots d\vec{p}_N\; e^{-\beta\sum_{i=1}^{N} \frac{|\vec{P}_i|^2}{2m}  }\right)
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.6} = \frac{1}{N! \lambda^{3N}}  \int d\vec{r}_1 e^{-\beta\mathcal{V}_{CM}(\vec{r}_1)} \int d\vec{r}_2 e^{-\beta\mathcal{V}_{CM}(\vec{r}_2)}\dots\int d\vec{r}_N e^{-\beta\mathcal{V}_{CM}(\vec{r}_N)} =\frac{1}{N! \lambda^{3N}} \left( \int d\vec{r}\; e^{-\beta\mathcal{V}_{CM}(\vec{r})}\right)^N
+\end{equation}
+
+
+
+La función de partición en la aproximación de campo medio esta dada por (\ref{2.5}).
+
+
+
+
+\begin{equation}
+\label{2.7}  \mathcal{V}_{CM}(\vec{r}) =  \mathcal{U}_0
+\end{equation}
+
+
+\begin{equation}
+\label{2.8}  \int d\vec{r}\; e^{-\beta\mathcal{V}_{CM}(\vec{r})} =  e^{-\beta\mathcal{U}_{0}} V_{\text{accesible}} =  e^{-\beta\mathcal{U}_{0}} \left( V- V_{\text{ocupado}}\right) 
+\end{equation}
+
+
+Debido a la homogeneidad espacial del sistema el potencial no depende de la posición de la partícula y es una constante (\ref{2.7}). Con esto la integral sobre la posición es solamente el volumen accesible a la partícula. Este volumen accesible es el volumen total menos el que ocupan las demás partículas.
+
+
+\begin{equation}
+\label{2.9}  V_{\text{ocupado}} = \left(N-1\right) b \approx N b  
+\end{equation}
+
+
+
+En la ecuación (\ref{2.9}) se escribe el volumen ocupado en función del volumen que ocupa cada partícula, $b$. Como $N$ es un número grande restarle 1 es despreciable por lo que se justifica $N-1 \approx N$.
+
+
+\begin{equation}
+\label{2.10} \mathcal{U}_0 = \int d\vec{r} \;\; \Phi(\vec{r})  n(\vec{r}) = -n a
+\end{equation}
+
+
+\begin{equation}
+\label{2.11} a = - \int  d\vec{r} \;\; \Phi(\vec{r}) > 0
+\end{equation}
+
+
+La expresión (\ref{2.10}) utiliza la asunción que la densidad es homogénea $n(\vec{r}) = n $.
+
+
+
+
+
+\begin{equation}
+\label{2.12}  \int d\vec{r}\; e^{-\beta\mathcal{V}_{CM}(\vec{r})} =  e^{\beta n a} V(1-nb)
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.13} \mathbf{Z}_c =\frac{1}{N! \lambda^{3N}}V^N e^{N\beta n a} (1-nb)^N
+\end{equation}
+
+
+
+Por lo que la función de partición esta dada por la ecuación (\ref{2.13}).
+
+
+
+\begin{equation}
+\label{2.14} \mathbf{Z}_c = \left(\mathbf{Z}_{\text{Gas Ideal}}\right) e^{N\beta n a} (1-nb)^N
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.15} \mathcal{F} = \mathcal{F}_{\text{Ideal}} + \mathcal{F}_{\text{Exceso}}
+\end{equation}
+
+
+\begin{equation}
+\label{2.16}  \mathcal{F}_{\text{Exceso}} = -N \left(\beta n a + \ln(1-nb) \right)
+\end{equation}
+
+
+
+Se observa que la función de partición se puede escribir como un producto de la función de partición para un gas ideal con una parte que se le llamara exceso. Análogamente, la energía libre de Helmholtz es una suma de la parte de gas ideal + un exceso.
+
+
+
+\begin{equation}
+\label{2.17} P = P_{\text{Ideal}} + P_{\text{Exceso}}
+\end{equation}
+
+
+
+
+
+\begin{equation}
+\label{2.18} \beta P_{\text{Exceso}} =  -\beta \left(\frac{\partial \mathcal{F}_{\text{exc}}}{\partial V}\right)_{T,N} = \left(\frac{N}{V}\right)^2 \left(  -\beta a + \frac{b}{1-nb} \right)
+\end{equation}
+
+Tambien la presión se puede escribir como un suma de la parte ideal + la presión exceso.
+
+\begin{equation}
+\label{2.19} \beta P = n + n^2 \left(  \frac{b}{1-nb}-\beta a  \right)
+\end{equation}
+
+La expresión (\ref{2.19}) se conoce como la ecuación de Van Der Waals
+
+
+
+
+\begin{equation}
+\label{2.20} \beta P = n + n^2 (b-\beta n) + n^3 b + O(n^4)
+\end{equation}
+
+En la ecuación (\ref{2.20}) se observa que la contribución principal es la de gas ideal y los demás términos son los aportes de la interacciones entre partículas.
+
+
+
+
+\begin{equation}
+\label{2.21}\left( \frac{\partial P}{\partial V}\right)_T >0
+\end{equation}
+
+
+\begin{equation}
+\label{2.22}  \chi_T<0
+\end{equation}
+
+
+
+
+ \begin{figure}[H]
+  \label{figditf}	\centering
+  	\includegraphics[scale = 0.27]{dift}
+  	\caption{Ecuación de Van de Waals: Diagramas P-V  para 3 temperaturas.}
+  	\label{dift}
+  \end{figure}
+
+
+En la imagen (\ref{dift}) se observa que hay zonas donde si se comprime el gas la presión disminuye (\ref{2.21}). Es decir tiene una compresibilidad isotérmica negativa (\ref{2.22}).
+
+
+
+\begin{equation}
+\label{2.23}  \chi_T = - \frac{1}{V} \left(\frac{\partial V}{\partial P}\right)_T  =- \frac{1}{V} \frac{1}{\left(\frac{\partial P}{\partial V}\right)_T }
+\end{equation}
+
+
+Se observa de la imagen junto con la ecuación (\ref{2.23}) que la compresibilidad isotérmica va a diverger para una temperatura y volumen críticos, $T_c$ \& $V_c$. Por lo que en estas hay una transición de fase de segundo orden en estos puntos.
+
+
+\begin{align}
+\label{2.24}   \left(\frac{\partial P}{\partial V}\right)_{\substack{V=V_c \\ T = T_c}} = 0\\
+\label{2.25} \left(\frac{\partial^2 P}{\partial V^2}\right)_{\substack{V=V_c \\ T = T_c}} = 0
+\end{align}
+
+
+
+De la solución al sistema de ecuaciones  (\ref{2.24} - \ref{2.25}) permite encontrar los puntos donde ocurre la transición de fase de segundo orden.
+ 
+
+
+\begin{align}
+\label{2.26}  V_c = 3b  \\
+\label{2.27} k_B T_c = \frac{8a}{27b} \\
+\label{2.28} P_c = \frac{a}{27b^2}
+\end{align}
+
+
+
+La solución al sistema de ecuaciones  (\ref{2.24} - \ref{2.25}) son los puntos (\ref{2.26} - \ref{2.28}). Es claro que el modelo tiene defectos y hay que hacer algo con la parte que falle.
+ 
+
+
+
+
+\begin{align}
+\label{2.29}  \mu_{\text{Gas}} = \mu_{\text{Líquido}}  \\
+\label{2.30} T_{\text{Gas}} = T_{\text{Líquido}}
+\end{align}
+
+
+
+
+En la transición de fase el potencial químico de la parte gaseosa y la líquida son iguales. También la temperatura de la parte gaseosa y de la parte líquida. Además se tiene que aunque el número de partículas gaseosas y líquidas fluctúa, el número total no cambia por lo que $dN =0$.
+
+
+
+
+
+
+\begin{equation}
+\label{2.31} dG = -S dT + V dP + \mu dN = VdP
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{2.32}
+ \int_{\textcircled{1}}^{\textcircled{2}}dG  = \int_{\textcircled{1}}^{\textcircled{2}}VdP
+\end{equation}
+
+Utilizando las condiciones de la transición de fase se obtiene la expresión (\ref{2.32}) para el cambio en la energía de Gibbs de un estado $\encircle{1}$ a $\encircle{2}$, donde ambos pertenecen a la región de transición de fase.
+
+
+
+
+\begin{equation}
+\label{2.33} G = \mu N
+\end{equation}
+
+
+\begin{equation}
+\label{2.34} \Delta G =\left(\mu_{l_f} N_{l_f} + \mu_{g_f} N_{g_f}\right) - \left(\mu_{l_i} N_{l_i} + \mu_{g_i} N_{g_i}\right)
+\end{equation}
+
+
+Para un sistema homogéneo se tiene la expresión (\ref{2.33}) para la energía de Gibbs. En la ecuación (\ref{2.34}) se tiene una expresión para el cambio de energía de Gibbs, donde los subíndices $g$ \& $l$ hacen referencia a gas y líquido respectivamente. Los subíndices $i$ \& $f$ a estado inicial y final respectivamente.
+
+\begin{equation}
+\label{2.341} \Delta G =\left(\mu N_{l_f} + \mu N_{g_f}\right) - \left(\mu N_{l_i} + \mu N_{g_i}\right) = \mu \left( N - N\right)
+\end{equation}
+
+\begin{equation}
+\label{2.35} \Delta G = 0
+\end{equation}
+
+
+
+Como el potencial químico del gas y el líquido son iguales en cualquier punto de la coexistencia de fases, no hay cambio en la energía de Gibbs. 
+
+
+
+
+\begin{equation}
+\label{2.36}  \int_{\textcircled{1}}^{\textcircled{2}}VdP = \int_{\textcircled{1}}^{\textcircled{2}}dG  = \Delta G = 0
+\end{equation}
+
+\begin{equation}
+\label{2.37}  \int_{\text{líquido}}^{\text{gas}}VdP = 0
+\end{equation}
+
+
+Juntando los resultados (\ref{2.32}) \& (\ref{2.35}) se obtiene la relación (\ref{2.36}), valida para cualquier parte de la transición de fase.
+
+
+
+ \begin{figure}[H]
+  \label{figremo}	\centering
+  	\includegraphics[scale = 0.27]{remo}
+  	\caption{Diagrama P-V: parte defectuosa punteada y parte correcta en azul}
+  	\label{remo}
+  \end{figure}
+
+
+ Por lo que las ecuaciones (\ref{2.36}) \& (\ref{2.37}) indican que se debe cambiar la parte defectuosa por una región constante de tal forma que las áreas defectuosas removidas sean iguales. En la imagen (\ref{remo}) se muestra esquemáticamente como se cambiaría la parte defectuosa. Las áreas sombreada superior e inferior deben ser iguales.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

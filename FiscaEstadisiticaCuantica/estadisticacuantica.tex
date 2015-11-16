@@ -1,0 +1,1706 @@
+\documentclass[oneside]{book}
+\usepackage{braket}
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{empheq}
+\usepackage{enumitem}
+\usepackage[pdftex]{color,graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{calligra}
+\usepackage{algpseudocode} 
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scripty}[1]{\ensuremath{\mathcalligra{#1}}}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\textwidth}{490pt}
+\setlength{\topmargin}{-40pt}
+\addtolength{\hoffset}{-0.3cm}
+\addtolength{\textheight}{4cm}
+\usepackage{amssymb}
+\usepackage{graphicx} % Required for the inclusion of images
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{tikz}
+\usepackage{gensymb}
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale = 0.42]{lcaoderecha}
+%	\caption{Eletr\'on ligado solo al núcleo derecho}
+%	\label{fig1}
+%	\end{figure}
+
+
+
+
+\begin{document}
+%\tableofcontents
+%\pagebreak
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\textsc{\LARGE Física Estadística}\\[0.5cm]
+\textsc{\LARGE Física Estadística Cuántica}\\[0.5cm]
+\textsc{\LARGE Notas de Clase}\\[0.5cm]
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{l r}
+\large
+Notas de Clase del Profesor: Gabriel Téllez% Instructor/supervisor
+\normalsize
+\end{tabular}
+\end{center} %\\[0.5cm]
+
+
+
+\textbf{\large Estas son las notas de clase tomadas en el semestre 2014-2  en la clase Física Estadística dictada por el profesor Gabriel Téllez. Estas notas son escritas por un alumno y pueden contener errores, uselas con precauci\'on.}\\[0.1cm]
+
+
+
+
+
+
+
+\begin{align*}   
+\textbf{ Longitud Térmica de De Broglie:} \qquad  \lambda = \sqrt{\frac{h^2 \beta}{2\pi m}}
+\end{align*}
+
+\begin{equation*}
+\textbf{Capacidad Calorifica:} \qquad C_v = -\frac{1}{T^2} \frac{\partial^2 S}{\partial E^2}
+\end{equation*}
+
+\begin{align*}
+&          &  \frac{\partial S_m}{\partial E} &= \frac{1}{T} \\             
+\mathbf{Z}_m &= \text{Tr} \left( \sum_{\substack{n \\ \\ E \leq E_n \leq E + \Delta E}} \ket{\phi_n}\bra{\phi_n}  \right)   &  \frac{\partial S_m}{\partial V}& = \frac{p}{T} \\   
+&   &  -\frac{\partial S_m}{\partial N} & = \frac{\mu}{T}     
+\\ \\&          & - \frac{\partial \mathcal{F}_c}{\partial T} &=  S_c \\              
+\mathbf{Z}_c &= \sum_{n} e^{-\beta E_n}  &  -\frac{\partial \mathcal{F}_c}{\partial V}& = P_c \\   
+&   &  \frac{\partial \mathcal{F}_c}{\partial N} & = \mu_c \\ \\
+&          & - \frac{\partial \Omega}{\partial T} &=  S_g \\             
+\mathbf{Z}_g & = \sum_N e^{  \beta \mu N} \sum_n e^{-\beta E_n}    &  -\frac{\partial \Omega}{\partial V}& = P_g \\   
+&   &  -\frac{\partial \Omega}{\partial \mu} & = N_g             
+          \end{align*}
+          
+          
+        
+        \begin{equation*}
+             \braket{n_{\vec{k}}} = \frac{1}{ e^{\beta (\epsilon_{\vec{k}}-\mu)}  -1 } \qquad \textbf{Bosones}
+        \end{equation*}
+        
+        
+        \begin{equation*}
+             \braket{n_{\vec{k}}} = \frac{1}{ e^{\beta (\epsilon_{\vec{k}}-\mu)}  + 1 } \qquad \textbf{Fermiones}
+        \end{equation*}  
+
+
+\tableofcontents
+\pagebreak
+
+\chapter{ Introducción: Repaso de Mecánica Cuántica}
+
+\section{Formulación Hamiltoniana}
+
+
+
+
+\begin{equation}
+\label{1.1.1} \textbf{Espacio de Fases (Simpléctico)} \longrightarrow \textbf{Espacio de Hilbert}
+\end{equation}
+
+En la mecánica cuántica se tiene un espacio de Hilbert, que sería el análogo al espacio de fase en la mecánica clásica. El estado de un sistema cuántico esta descrito por un vector del espacio de Hilbert, $\ket{\psi(t)}$.
+
+
+
+\begin{align*}
+\textbf{Cuántica}&           &  \text{Clásica}&              \\
+\textbf{Espacio de Hilbert}&           &  \text{Espacio de Fases}&              \\
+\textbf{Vector de E.H: }&\;\ket{\psi(t)}         &  \text{Punto del E.F: }& \;\Gamma(\vec{r}_1,\dots,\vec{p}_1,\dots)   \\
+\textbf{Evolución: Ec. }&  \textbf{Schrödinger}         &  \text{Ecuaciones de } & \text{Hamilton}          \\
+\textbf{Observables: }& \widehat{A}         &  \text{Observables: }& A(\Gamma)
+\end{align*}
+
+
+En mecánica cuántica un observable $A$ se representa con un operador hermítico y solo los valores propios para ese operador se pueden medir.
+
+
+
+
+\begin{equation}
+\label{1.1.2} \widehat{A} \ket{\phi_i} = a_i \ket{\phi_i}
+\end{equation}
+
+
+\begin{equation}
+\label{1.1.3} \ket{\psi} = \sum_{i} c_i \ket{\phi_i}
+\end{equation}
+
+Un estado arbitrario del sistema se puede describir como combinación lineal de los estados propios de un observable. No se puede predecir en que estado esta un sistema cuántico sino cual es la probabilidad de medir y obtener $a_i$. Esta probabilidad es:
+
+ 
+
+\begin{equation}
+\label{1.1.4} \mathcal{P}(a_i) = |c_i|^2 = |\braket{\phi_i|\psi}|^2
+\end{equation}
+
+El valor esperado de un observable es:
+
+ 
+
+\begin{equation}
+\label{1.1.5} \braket{\widehat{A}}  = \sum_{n} P_n \braket{\phi_n|\widehat{A}|\phi_n}
+\end{equation}
+
+Se le conoce como estado puro a un vector propio de un observable. Un estado mezclado es una combinación lineal de varios vectores propios.
+
+\section{Operador Densidad}
+
+
+
+\begin{equation}
+\label{1.2.1} \widehat{\rho} = \sum_{n} \mathcal{P}_n \ket{\phi_n}\bra{\phi_n}
+\end{equation}
+
+
+\begin{equation}
+\label{1.2.2} \text{Tr}\left(\widehat{\rho}\right) = 1
+\end{equation}
+Se define el operador densidad en la ecuación (\ref{1.2.1}). La traza de este operador es $1$, como se muestra a continuación:\\
+
+Se toma una base del espacio de Hilbert $\{\ket{e_\alpha}\}_\alpha$:
+
+
+\begin{equation*}
+ \text{Tr}\left(\widehat{\rho}\right) = \sum_{\alpha} \braket{e_\alpha|\widehat{\rho}|e_\alpha} = \sum_{\alpha}\sum_{n} \braket{e_\alpha \ket{\phi_n} \bra{\phi_n}   e_\alpha} \mathcal{P}_n
+\end{equation*}
+
+
+\begin{equation*}
+  = \sum_{\alpha}\sum_{n} \braket{\phi_n \ket{e_\alpha} \bra{e_\alpha}  \phi_n } \mathcal{P}_n = \sum_{n} \braket{\phi_n |\sum_{\alpha}\ket{e_\alpha} \bra{e_\alpha}  \phi_n } \mathcal{P}_n =
+\end{equation*}
+
+
+\begin{equation*}
+   = \sum_{n} \braket{\phi_n | \phi_n } \mathcal{P}_n = \sum_{n}  \mathcal{P}_n = 1
+\end{equation*}
+
+Con el operador densidad se puede escribir el valor esperado como (\ref{1.2.3}).
+
+
+\begin{equation}
+\label{1.2.3} \text{Tr}\left(\widehat{\rho}\widehat{A}\right) = \braket{\widehat{A}}
+\end{equation}
+
+
+Prueba:
+
+\begin{equation*}
+ \text{Tr}\left(\widehat{\rho} \widehat{A}\right) = \sum_{\alpha} \braket{e_\alpha|\widehat{\rho} \widehat{A}|e_\alpha} = \sum_{\alpha}\sum_{n} \braket{e_\alpha \ket{\phi_n} \bra{\phi_n}  \widehat{A} | e_\alpha} \mathcal{P}_n
+\end{equation*}
+
+
+\begin{equation*}
+  = \sum_{\alpha}\sum_{n} \braket{\phi_n| \widehat{A}  \ket{e_\alpha} \bra{e_\alpha}  \phi_n } \mathcal{P}_n = \sum_{n} \braket{\phi_n |\widehat{A}  \sum_{\alpha}\ket{e_\alpha} \bra{e_\alpha}  \phi_n } \mathcal{P}_n =
+\end{equation*}
+
+
+\begin{equation*}
+   = \sum_{n} \braket{\phi_n |\widehat{A} | \phi_n } \mathcal{P}_n = \braket{\widehat{A}}
+\end{equation*}
+
+
+\chapter{Ensambles Estadísticos Cuánticos}
+
+\section{Microcanónico}
+
+\begin{equation}
+\label{2.1.1} \widehat{H}\ket{\phi_n} = E_n \ket{\phi_n}
+\end{equation}
+
+Este ensamble es aislado y tiene energía constante. Los estados $\ket{\phi_n}$ deben ser estados propios del Hamiltoniano $\widehat{H}$.
+
+
+
+
+\begin{equation}
+\label{2.1.2} \widehat{\rho}= \sum_{\substack{n \\ \\ E \leq E_n \leq E + \Delta E}} \ket{\phi_n}\bra{\phi_n}
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.1.3}  \mathcal{P}_n   = \begin{cases}
+        1 \qquad \text{si }\; E_n \in [E,E+\Delta E]  \\
+        0  \qquad \text{si }\; E_n \not\in [E,E+\Delta E] 
+        \end{cases}
+\end{equation}
+
+
+\begin{equation}
+\label{2.1.4} \mathbf{Z}_m = \text{Tr} \left(\widehat{\rho} \right) \qquad \textbf{Número de estados con energía en el rango } [E,E+\Delta E]
+\end{equation}
+
+
+
+
+\section{Canónico}
+
+
+
+\begin{equation}
+\label{2.2.1}  \widehat{\rho} = e^{-\beta \widehat{H}}
+\end{equation}
+
+Este ensamble esta en contacto con un reservorio a temperatura $T$. Esta en equilibrio térmico con él y tiene intercambio de energía con el reservorio. Los estados $\ket{\phi_n}$ deben ser estados propios del Hamiltoniano $\widehat{H}$.
+
+
+
+
+\begin{equation}
+\label{2.2.2} \mathbf{Z}_c = \sum_{n} e^{-\beta E_n}
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.2.3}  \mathcal{P}_n   =   \frac{e^{-\beta E_n}}{\mathbf{Z}_c}
+\end{equation}
+
+
+\section{Gran Canónico}
+
+
+\begin{equation}
+\label{2.3.1}  \widehat{N} = \textbf{Operador número de partículas}
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.3.2} \widehat{H}\ket{\phi_n} = E_n \ket{\phi_n}
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.3.3}  \widehat{N}\ket{\phi_n} = N_n \ket{\phi_n}
+\end{equation}
+
+Para definir la función de partición Gran Canónica, se utiliza el operador número de partículas(\ref{2.3.1}), que actúa de acuerdo a  (\ref{2.3.3}).
+
+
+\begin{equation}
+\label{2.3.4}  \widehat{\rho} = e^{-\beta \widehat{H} + \beta \mu \widehat{N}}
+\end{equation}
+
+
+
+\begin{equation}
+\label{2.3.5} \mathbf{Z}_c = \text{Tr}\left( \widehat{\rho}\right) =\sum_{n} e^{-\beta E_n} = \sum_n e^{-\beta E_n + \beta \mu N_n} = \sum_N e^{  \beta \mu N} \sum_n e^{-\beta E_n} 
+\end{equation}
+
+\chapter{Gases Ideales Cuánticos}
+
+\section{Introducción}
+
+\begin{equation}
+\label{3.1.1} \widehat{H} = \sum_{i=1}^{N} \frac{|\underset{\rightarrow}{\widehat{P}_i}|^2}{2m} = \sum_{i=1}^{N} \widehat{h}_i
+\end{equation}
+
+
+Un gas ideal cuántico consiste en $N$ partículas no interactuantes con un hamiltoniano dado (\ref{3.1.1}).
+
+\begin{equation}
+\label{3.1.2}  \braket{\vec{r}_1,\dots,\vec{r}_N | \psi      } = \psi(\vec{r}_1,\dots,\vec{r}_N)
+\end{equation}
+
+
+
+
+
+\begin{equation}
+\label{3.1.3}  \braket{\vec{r}_1,\dots,\vec{r}_N |\; \underset{\rightarrow}{\widehat{P}_i}  \;|\psi      } = i\hbar \frac{\partial \psi}{\partial \vec{r}_i}(\vec{r}_1,\dots,\vec{r}_i,\dots,\vec{r}_N)
+\end{equation}
+
+
+\begin{equation}
+\label{3.1.4}  \braket{\vec{r}_1,\dots,\vec{r}_N |\; \widehat{h}_i \; |\psi      } = -\frac{\hbar^2}{2m} \nabla_i^2 \psi(\vec{r}_1,\dots,\vec{r}_i,\dots,\vec{r}_N)
+\end{equation}
+
+
+\textbf{1 Partícula:}\\
+
+En el espacio de Hilbert de una partícula, $\ket{\varphi}$:
+
+
+
+\begin{equation}
+\label{3.1.5}  \braket{\vec{r}\;| \varphi      } = \varphi(\vec{r})
+\end{equation}
+
+
+\begin{equation}
+\label{3.1.6} \widehat{h} = \frac{\underset{\rightarrow}{\widehat{P}}}{2m}
+\end{equation}
+
+\begin{equation}
+\label{3.1.7}  \braket{\vec{r}\;| \;\widehat{h}\;|\varphi      } = -\frac{\hbar^2}{2m} \nabla^2 \varphi(\vec{r})
+\end{equation}
+
+
+Se procede a resolver la ecuación de valores propios para una sola partícula.
+
+
+
+\begin{equation}
+\label{3.1.8}  \widehat{h} \ket{\varphi} = \epsilon \ket{\varphi}
+\end{equation}
+
+\begin{equation}
+\label{3.1.9}- \frac{\hbar^2}{2m} \nabla^2{\varphi}(\vec{r}) = \epsilon {\varphi} (\vec{r})
+\end{equation}
+
+Se propone un onda plana como solución.
+
+\begin{equation}
+\label{3.1.10}  \varphi(\vec{r}) = e^{i \vec{k}\cdot \vec{r}}
+\end{equation}
+
+
+
+\begin{equation}
+\label{3.1.11} \frac{\hbar^2|\vec{k}|^2}{2m} {\varphi}(\vec{r}) = \epsilon {\varphi} (\vec{r})
+\end{equation}
+
+\begin{equation}
+\label{3.1.12}  \epsilon = \frac{\hbar^2|\vec{k}|^2}{2m}  
+\end{equation}
+
+Se imponen condiciones de frontera periódicas (caja cuadrada de volumen $L^3$):
+
+
+\begin{equation}
+\label{3.1.13}  \varphi(\vec{r} + L \;\hat{e}_\alpha)  = \varphi(\vec{r})
+\end{equation}
+
+\begin{equation}
+\label{3.1.14}  e^{i k_\alpha L} = 1
+\end{equation}
+
+
+\begin{equation}
+\label{3.1.15}  k_\alpha  = \frac{2\pi l_\alpha}{L}   \qquad l_\alpha \in \mathbb{Z}
+\end{equation}
+
+Donde $\hat{e}_\alpha$ son los ejes espaciales, con $\alpha \in \{x,y,z \}$.
+
+
+
+\begin{equation}
+\label{3.1.16} \int_{L^3} |\varphi(\vec{r})|^2 d \vec{r}= 1 \quad \longleftrightarrow \quad
+ \varphi_{\vec{k}} (\vec{r}) = \frac{1}{\sqrt{V}} e^{i\vec{k}\cdot \vec{r}}
+\end{equation}
+
+Con la condición de normalización (\ref{3.1.16}) se encuentra la expresión para la función de onda de una partícula. Se introdujo $V= L^3$ y $\varphi_{\vec{k}}$, donde el subíndice $\vec{k}$ sera útil para la discusión de $N$ partículas.\\
+
+
+\textbf{$N$ Partículas:}\\
+
+
+\begin{equation}
+\label{3.1.17} \widehat{H} \ket{\psi} = E \ket{\psi}
+\end{equation}
+
+\begin{equation}
+\label{3.1.18}  \ket{\psi} = \ket{\varphi_{\vec{k}_1}}_1 \otimes \ket{\varphi_{\vec{k}_2}}_2 \otimes \dots \otimes \ket{\varphi_{\vec{k}_N}}_N 
+\end{equation}
+
+
+\begin{equation}
+\label{3.1.19}  \braket{\vec{r}_1,\dots,\vec{r}_N |\psi } = \varphi_{\vec{k}_1} (\vec{r}_1)  \varphi_{\vec{k}_2} (\vec{r}_2), \dots, \varphi_{\vec{k}_N} (\vec{r}_N)
+\end{equation}
+
+Utilizando la expresión (\ref{3.1.4}) y nuevamente tomando una solución de una productoria de ondas planas:
+
+\begin{equation}
+\label{3.1.20}  \sum_{i=1}^{N} \frac{\hbar^2|\vec{k}_i|}{2m} \psi(\vec{r}_1,\dots,\vec{r}_N) = E  \psi(\vec{r}_1,\dots,\vec{r}_N)
+\end{equation}
+
+\begin{equation}
+\label{3.1.22}   E  =\sum_{i=1}^{N} \frac{\hbar^2|\vec{k}_i|}{2m}  
+\end{equation}
+
+Como son partículas indistinguible hay que tener en cuenta el postulado de simetrización y anti-simetrización. 
+
+
+
+\begin{equation}
+\label{3.1.23}     |\psi(\vec{r}_1,\dots,\vec{r}_i,\vec{r}_j,\dots,\vec{r}_N)| = |\psi(\vec{r}_1,\dots,\vec{r}_j,\vec{r}_i,\dots,\vec{r}_N)|
+\end{equation}
+
+Este postulado sale de reconocer que hay dos posibles soluciones para la condición (\ref{3.1.23}).
+
+
+
+\begin{equation}
+\label{3.1.24}     \psi(\vec{r}_1,\dots,\vec{r}_i,\vec{r}_j,\dots,\vec{r}_N) = \psi(\vec{r}_1,\dots,\vec{r}_j,\vec{r}_i,\dots,\vec{r}_N) \qquad \textbf{Bosones}
+\end{equation}
+
+
+\begin{equation}
+\label{3.1.25}     \psi(\vec{r}_1,\dots,\vec{r}_i,\vec{r}_j,\dots,\vec{r}_N) = - \psi(\vec{r}_1,\dots,\vec{r}_j,\vec{r}_i,\dots,\vec{r}_N)   \qquad \textbf{Fermiones}
+\end{equation}
+
+
+\textbf{Bosones:} Hay que simetrizar la función de onda.
+
+
+\begin{equation}
+\label{3.1.26} \psi_{\text{sim}} = \frac{1}{\sqrt{N!}}\sum_{\sigma \in S_N} \varphi_{\sigma_1}(\vec{r}_1) \dots \varphi_{\sigma_N}(\vec{r}_N)
+\end{equation}
+
+
+Donde $S_N = \text{Grupo de permutaciones de N elementos}$. Hay que tener cuidado si algún $\vec{k}$ se repite por que se estaría contando demás. Por lo que hay que multiplicar por un factor adicional:
+
+
+\begin{equation}
+\label{3.1.27} \psi_{\text{sim}} = \frac{1}{\sqrt{N!}} \left(  \prod \frac{1}{\vec{n}_{k_\alpha}! }\right)^{\frac{1}{2}}  \sum_{\sigma \in S_N} \varphi_{\sigma_1}(\vec{r}_1) \dots \varphi_{\sigma_N}(\vec{r}_N)
+\end{equation}
+
+
+Donde $\vec{n}_{k_\alpha} =\text{Número de veces que se repite } \vec{k}_\alpha$. \\
+
+\textbf{Fermiones:} Hay que anti-simetrizar la función de onda.
+
+\begin{equation}
+\label{3.1.28} \psi_{\text{antisim}} = \frac{1}{\sqrt{N!}}\sum_{\sigma \in S_N} \varepsilon(\sigma) \varphi_{\sigma_1}(\vec{r}_1) \dots \varphi_{\sigma_N}(\vec{r}_N)
+\end{equation}
+
+
+Donde $\varepsilon(\sigma)= \text{signo de permutación }\sigma$.\\
+
+\textbf{Función de Partición Canónica:}
+
+
+\begin{equation}
+\label{3.1.29} \mathbf{Z}_c = \int \frac{1}{N!} d\vec{r}_1 \dots d\vec{r}_N \braket{\vec{r}_1,\dots,\vec{r}_N| e^{-\beta \widehat{H}}   |\vec{r}_1,\dots,\vec{r}_N}
+\end{equation}
+
+Donde ya se simetrizaron o antisimetrizaron el ket y bra de la expresión (\ref{3.1.29}). Este camino es muy difícil ya que toca sumar sobre las permutaciones, por lo que se busca una forma de etiquetar los estados del sistema sin dar información sobre el orden de las partículas.
+
+\chapter{Gases Ideales en Representación de Números de Ocupación}
+
+
+\section{Números de Ocupación}
+\begin{equation}
+\label{4.1.1} \vec{k} = \frac{2\pi}{L} (l_x,l_y,l_z) \qquad \qquad l_{x,y,x} \in \mathbb{Z}
+\end{equation}
+
+
+\begin{figure}[H]
+ \label{fig}	\centering
+ 	\includegraphics[scale = 0.27]{ocupacion}
+ 	\caption{Representación en números de ocupación}
+ 	\label{canonico}
+ \end{figure}
+ 
+ 
+ Las energías propias estan dadas por:
+ 
+ 
+ \begin{equation}
+ \label{4.1.2} E_{\vec{k}_1,\dots,\vec{k}_N} = \sum_{i=1}^{N}\frac{\hbar^2 |\vec{k}_i|^2}{2m}
+ \end{equation}
+ 
+ Introduciendo el número de ocupación:
+ 
+ 
+ 
+  \begin{equation}
+  \label{4.1.3} E = \sum_{\vec{k}} n_{\vec{k}} \frac{\hbar^2 |\vec{k}_i|^2}{2m} = \sum_{l_x\in \mathbb{Z}}\sum_{l_y\in \mathbb{Z}}\sum_{l_z\in \mathbb{Z}} n_{(l_x,l_y,l_z)} \frac{\hbar^2 (2\pi)^2}{2m L^2} (l_x^2 + l_y^2+ l_z^2)
+  \end{equation}
+  
+ 
+ \begin{equation}
+   \label{4.1.4} n_{\vec{k}} \in \{ 0,1,\dots,\infty \} \qquad \textbf{Bosones}
+   \end{equation}
+   
+  
+   \begin{equation}
+     \label{4.1.5} n_{\vec{k}} \in \{ 0,1 \} \qquad \textbf{Fermiones}
+     \end{equation}
+
+
+Por ahora se ignorara el spin y luego se introducirá una etiqueta para tomarlo en cuenta. 
+
+
+\begin{equation}
+\label{4.1.6} N = \sum_{\vec{k}} n_{\vec{k}} 
+\end{equation}
+
+
+\begin{equation}
+\label{4.1.7}   E_{ n_{\vec{k}} } = \sum_{ \vec{k} } n_{ \vec{k} } \; \epsilon_{ \vec{k} }
+\end{equation}
+
+\begin{equation}
+\label{4.1.8}   \epsilon_{ \vec{k} } = \frac{\hbar^2 |\vec{k}|^2 }{2m}
+\end{equation}
+
+
+Con esto la expresión para la función de partición canónica es:
+
+\begin{equation}
+\label{4.1.9} \mathbf{Z}_c = \sum_{\substack{n_{\vec{k}} \\ \sum n_{\vec{k}} = N   }} e^{ -\beta E_{ n_{\vec{k}} } }
+\end{equation}
+
+Para quitar esta reestricción sobre la suma, se pasa al conjunto gran canónico:
+
+
+
+\begin{equation}
+\label{4.1.10} \mathbf{Z}_g =\sum_{N=0}^{\infty} e^{\beta \mu N} \sum_{\substack{n_{\vec{k}} \\ \sum n_{\vec{k}} = N   }} e^{ -\beta E_{ n_{\vec{k}} } } =  \sum_{\substack{n_{\vec{k}} }} e^{ -\beta E_{ n_{\vec{k}} } +\beta\mu N_{ n_{\vec{k}} }} 
+\end{equation}
+
+
+
+
+
+\begin{equation}
+\label{4.1.11} \mathbf{Z}_g = \sum_{n_{0,0,0}} \dots \sum_{n_{2,0,0}} \dots \sum_{n_{1,1,1}}\dots e^{\beta \sum n_{\vec{k}}(\mu - \epsilon_{\vec{k}})}
+\end{equation}
+
+
+
+\begin{align}
+\label{4.1.12}  \mathbf{Z}_g = \sum \dots \sum \prod  e^{\beta  n_{\vec{k}}(\mu - \epsilon_{\vec{k}})} 
+\end{align}
+
+
+
+\begin{equation}
+\label{4.1.13} \mathbf{Z}_g 
+= \left(\sum_{n_{(0,0,0)}}e^{\beta n_{(0,0,0)}(\mu-\epsilon_{(0,0,0)})}\right)\dots  \left(\sum_{n_{(1,1,1)}}e^{\beta n_{(1,1,1)}(\mu-\epsilon_{(1,1,1)})}\right) \dots
+\end{equation}
+
+
+\begin{equation}
+\label{4.1.14} \mathbf{Z}_g 
+= \prod_{\vec{k}} \left( \sum_{n=0,1,\dots} e^{\beta  n(\mu - \epsilon_{\vec{k}})} \right)
+\end{equation}
+
+
+En la ecuación (\ref{4.1.14}) la suma sobre $n$ depende de las partículas, si son Bosones se suma sobre los naturales y si son Fermiones $n=0,1$.
+
+
+
+\begin{equation}
+\label{4.1.15} z_{\vec{k}} \equiv  \sum_{n=0,1,\dots} e^{\beta  n(\mu - \epsilon_{\vec{k}})} 
+\end{equation}
+
+
+
+\begin{equation}
+\label{4.1.16} \mathbf{Z}_g 
+= \prod_{\vec{k}} z_{\vec{k}} 
+\end{equation}
+
+
+\textbf{Bosones:}\\
+
+
+
+
+
+\begin{equation}
+\label{4.1.17} n \in \mathbb{N} \longrightarrow z_{\vec{k}} = \sum_{n\in \mathbb{N}} e^{\beta  n(\mu - \epsilon_{\vec{k}})} 
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{4.1.18}  z_{\vec{k}} = \frac{1}{1 - e^{\beta  (\mu - \epsilon_{\vec{k}})} }
+\end{equation}
+
+Donde se asumió que $\mu-\epsilon_{\vec{k}}<0$.\\ 
+
+\textbf{Fermiones:}\\
+
+
+
+
+
+\begin{equation}
+\label{4.1.19} n=0,1 \longrightarrow z_{\vec{k}} = \sum_{n=0,1} e^{\beta  n(\mu - \epsilon_{\vec{k}})} 
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{4.1.20}  z_{\vec{k}} = 1 + e^{\beta  (\mu - \epsilon_{\vec{k}})} 
+\end{equation}
+
+
+
+
+Ahora la probabilidad de que un estado con vector de onda $\vec{k}$ este lleno con $n_{\vec{k}}$ partículas es:
+
+
+
+\begin{equation}
+\label{4.1.21} \mathcal{P}_{n_{\vec{k}}}  = \frac{e^{\beta n_{\vec{k}}(\mu-\epsilon_{n_{\vec{k}}})}}{z_{\vec{k}}}
+\end{equation}
+
+
+
+
+
+
+\begin{equation}
+   \label{4.1.22}  \mathcal{P}_{n_{\vec{k}}}  = \begin{cases}
+     \left(1 - e^{\beta  (\mu - \epsilon_{\vec{k}})}\right)  e^{\beta n_{\vec{k}}(\mu-\epsilon_{n_{\vec{k}}})}  \qquad \text{Para Bosones }\\ \\
+        \frac{e^{\beta n_{\vec{k}}(\mu-\epsilon_{n_{\vec{k}}})} }{1 - e^{\beta  (\mu + \epsilon_{\vec{k}})}} \quad \quad \;\;\;\text{Para Fermiones }
+        \end{cases}\\
+\end{equation}
+
+
+
+
+En la ecuación (\ref{4.1.21}) se divide por $z_{\vec{k}}$ y no por $\mathbf{Z}_g$. Esto es debido a que la función de partición es un producto de contribuciones independientes de cada valor de $\vec{k}$.
+
+
+
+
+\section{Números de Ocupación Promedio}
+
+
+
+
+\begin{equation}
+   \label{4.2.1} \braket{n_{\vec{k}}} = \sum_{n_{\vec{k}}}n_{\vec{k}} \mathcal{P}_{n_{\vec{k}}}  
+\end{equation}
+
+
+El número de ocupación promedio esta dado por la expresión (\ref{4.2.1}).
+
+
+
+\begin{equation}
+   \label{4.2.2}  \sum_{n_{\vec{k}}}n_{\vec{k}} \mathcal{P}_{n_{\vec{k}}} = \frac{1}{z_{\vec{k}}}   \sum_{n_{\vec{k}}}n_{\vec{k}} e^{\beta n_{\vec{k}}(\mu-\epsilon_{\vec{k}})} = \frac{1}{\beta z_{\vec{k}}}  \frac{\partial z_{\vec{k}}}{\partial \mu}
+\end{equation}
+
+
+
+
+
+
+\begin{equation}
+   \label{4.2.3}  \braket{n_{\vec{k}}} = \frac{1}{\beta }  \frac{\partial \ln z_{\vec{k}}}{\partial \mu}
+\end{equation}
+
+Distinguiendo para Bosones y Fermiones se obtienen las siguientes expresiones:
+
+\begin{equation}
+   \label{4.2.4}  \braket{n_{\vec{k}}} = \frac{1}{ e^{\beta (\epsilon_{\vec{k}}-\mu)}  -1 } \qquad \textbf{Bosones}
+\end{equation}
+
+
+\begin{equation}
+   \label{4.2.5}  \braket{n_{\vec{k}}} = \frac{1}{ e^{\beta (\epsilon_{\vec{k}}-\mu)}  + 1 } \qquad \textbf{Fermiones}
+\end{equation}
+
+
+
+Con los números de ocupación se pueden calcular cantidades físicas.\\ 
+
+
+\textbf{Energía Interna}
+
+
+
+\begin{equation}
+   \label{4.2.6}  E_{n_{\vec{k}}} = \sum_{\vec{k}} n_{\vec{k}} \epsilon_{\vec{k}}
+   \end{equation}
+
+
+
+\begin{equation}
+   \label{4.2.7} U = \braket{ E_{n_{\vec{k}}}} = \sum_{\vec{k}} \braket{n_{\vec{k}}} \epsilon_{\vec{k}}
+   \end{equation}
+
+
+
+
+\section{Límite Termodinámico}
+
+
+
+
+
+
+
+\begin{figure}[H]
+ \label{figl}	\centering
+ 	\includegraphics[scale = 0.27]{limite}
+ 	\caption{Límite Termodinámico $\longrightarrow$ densidad de sitios alta}
+ 	\label{limite}
+ \end{figure}
+
+
+En el límite termodinámico del ensamble Gran Canónico, se tiene que $V \longrightarrow \infty$ (y por ende $L \longrightarrow \infty$) con $T,\mu$ finitos. Por lo que la concentración de números de ocupación en el espacio $\vec{k}$ se vuelve tan densa que se puede aproximar como continua.
+
+
+\begin{equation}
+   \label{4.3.1} \sum_{\vec{k}} f(\vec{k}) \Delta \vec{k}  \longrightarrow \int d\vec{k} \;f(\vec{k})
+   \end{equation}
+ Se procede a encontrar una expresión general para aproximar sumas sobre $\vec{k}$ en el límite termodinámico (\ref{4.3.1}).
+
+
+
+\begin{equation}
+   \label{4.3.2}  \Delta \vec{k} =\Delta k_x \Delta k_y \Delta k_x
+   z = \left(\frac{2\pi}{L}\right)^3 = \frac{8 \pi^3}{V}
+   \end{equation}
+ 
+
+
+\begin{equation}
+   \label{4.3.3} \sum_{\vec{k}} f(\vec{k})   \approx \frac{V}{(2\pi)^3} \int d\vec{k} \;f(\vec{k})
+   \end{equation}
+ 
+
+\begin{equation}
+   \label{4.3.4}  \frac{V}{(2\pi)^3} \int d\vec{k} \;f(\vec{k}) = \frac{V}{(2\pi)^3} \int_{\mathbb{R}^+} d\Omega\int dk\; k^2 f(k)
+   \end{equation}
+  
+
+\begin{equation}
+   \label{4.3.5} \sum_{\vec{k}} f(\vec{k})   \approx \frac{V}{2\pi^2} \int_{\mathbb{R}^+} dk \; k^2 f(k)
+   \end{equation}
+  
+Se pasa de $\vec{k}$  a $\epsilon$:
+
+
+
+\begin{equation}
+   \label{4.3.6} \epsilon = \frac{\hbar^2 |\vec{k}|^2}{2m} \qquad\qquad d\epsilon = \frac{\hbar^2 k}{m} dk \qquad\qquad k=\frac{\sqrt{2m\epsilon}}{\hbar}
+   \end{equation}
+
+
+
+
+\begin{equation*}
+    \sum_{\vec{k}} f(\vec{k})   \approx = \frac{V}{2 \pi^2} \int_{\mathbb{R}^+} d\epsilon \;  \frac{2m\epsilon}{\hbar^2} \frac{m}{\hbar^2} \frac{\hbar}{\sqrt{2m\epsilon}} f(\epsilon)
+   \end{equation*}
+
+
+\begin{equation*}
+   \label{4.3.7}  \sum_{\vec{k}} f(\vec{k})   \approx =  \int_{\mathbb{R}^+} d\epsilon \;  \frac{V}{\pi^2 \hbar^3} \sqrt{\frac{m^3 \epsilon}{2}} f(\epsilon)
+   \end{equation*}
+
+
+Donde se identifica el número de estados disponibles que tiene una energía en el intervalo $[\epsilon,\epsilon+d\epsilon]$, dado por $\mathcal{N}d\epsilon$:
+
+
+
+\begin{equation}
+   \label{4.3.8} \mathcal{N}(\epsilon) =  \frac{V}{\pi^2 \hbar^3} \sqrt{\frac{m^3 \epsilon}{2}} 
+   \end{equation}
+
+La expresión (\ref{4.3.8}) se le conoce como densidad de estados, en algunos libros usan la notación $\mathcal{N}(\epsilon) = g(\epsilon)$. Las cantidades físicas deseadas se calculan a partir del gran potencial, por lo que se desarrolla una expresión para este.
+
+
+
+
+
+\begin{equation}
+   \label{4.3.9} \ln \mathbf{Z}_g =\ln\prod_{\vec{k}}  z_{\vec{k}} = \sum_{\vec{k}} \ln z_{\vec{k}} = \mp \sum_{\vec{k}} \ln\left(  1 \mp e^{\beta(\mu-\epsilon_{\vec{k}})}\right) 
+   \end{equation}
+
+
+ 
+ 
+ 
+ \begin{equation}
+    \label{4.3.10}  \mp \sum_{\vec{k}} \ln\left(  1 \mp e^{\beta(\mu-\epsilon_{\vec{k}})}\right)  \approx \mp  \int_{\mathbb{R}^+} d\epsilon\;\mathcal{N}(\epsilon)\left(  1 \mp e^{\beta(\mu-\epsilon_{\vec{k}})}\right) 
+    \end{equation}
+ 
+
+Donde en las expresiones (\ref{4.3.9} - \ref{4.3.10}) se tiene el signo negativo para el caso de Bosones y el signo positivo para Fermiones. En el resto del texto se usara el signo de arriba para Bosones y el de abajo para Fermiones. 
+
+\begin{equation}
+\label{4.3.11} x = \beta \epsilon \qquad \qquad d \epsilon = \frac{dx}{\beta} 
+\end{equation}
+
+
+\begin{equation}
+\label{4.3.12} \ln \mathbf{Z}_g = \mp  \frac{V}{\pi^2 \hbar^3} \sqrt{\frac{m^3 }{2\beta^3}} \int_{\mathbb{R}^+} dx \;\sqrt{x} \ln \left(1\mp e^{\beta\mu} e^{-x}\right)
+\end{equation}
+
+A partir de la expresión (\ref{4.3.12}) se pueden calcular las  cantidades $\braket{P}_g,\braket{N}_g$ \& $\braket{S}_g$.\\
+
+En la practica se utiliza más el conjunto canónico, por lo que se busca pasar a él:
+
+\begin{equation}
+\label{4.3.13} \braket{N}_g = \frac{1}{\beta} \frac{\partial \ln \mathbf{Z}_g}{\partial \mu}
+\end{equation}
+
+
+
+\begin{equation}
+\label{4.3.14}n = \frac{\braket{N}_g}{V}=\frac{1}{\beta} \frac{\partial }{\partial \mu} \left(\frac{\ln \mathbf{Z}_g}{V}\right) = \frac{\partial P}{\partial \mu} (T,V)
+\end{equation}
+
+
+Por lo que se tiene una expresión para la densidad en terminos de la temperatura y el potencial químico, $n = n(T,\mu)$. Es dificil pero en algunos casos se puede encontrar una expresión para el potencial químico en función de la temperatura y la densidad, $\mu = \mu(T,n)$.
+
+
+
+
+
+\section{Régimen Débilmente Degenerado (Semi-Clásico)  }
+
+\begin{equation}
+\label{4.4.1} \lambda = \sqrt{\frac{ h^2\beta }{2\pi m}}=\sqrt{\frac{2\pi \hbar^2\beta }{m}}
+\end{equation}
+
+
+\begin{equation}
+\label{4.4.2} \lambda \ll \left(\frac{V}{N}\right)^{\frac{1}{3}} \qquad \longrightarrow \qquad \textbf{Régimen Débilmente Degenerado}
+\end{equation}
+
+
+El régimen débilmente degenerado corresponde a la situación en que la distancia promedio entre los partículas(si se consideran funciones de onda espaciales Guassianas, la distancia entre las posiciones promedio) es mucho más grande que la zona dominante de la función de onda (el ancho de la Gaussiana). Esto se cuantifica con la longitud de onda de de Broglie $\lambda$ (\ref{4.4.1}) como se muestra en (\ref{4.4.2}).
+
+
+
+\section{Régimen Fuertemente Degenerado (Cuántico)  }
+
+
+\begin{equation}
+\label{4.4.3} \lambda \geq \left(\frac{V}{N}\right)^{\frac{1}{3}} \qquad \longrightarrow \qquad \textbf{Régimen  Degenerado}
+\end{equation}
+
+\begin{equation}
+\label{4.4.4} \lambda \gg \left(\frac{V}{N}\right)^{\frac{1}{3}} \qquad \longrightarrow \qquad \textbf{Régimen Fuertemente Degenerado}
+\end{equation}
+
+El régimen fuertemente degenerado corresponde a la situación en que la distancia promedio entre los partículas(si se consideran funciones de onda espaciales Guassianas, la distancia entre las posiciones promedio) es menor o aproximadamente del tamaño de la zona dominante de la función de onda (el ancho de la Gaussiana).  Esto se cuantifica con la longitud de onda de de Broglie $\lambda$ (\ref{4.4.3}) como se muestra en (\ref{4.4.4}).
+
+
+
+
+\section{Gas Ideal Cuántico  }
+
+Se empieza por recordar las ecuaciones del gas ideal clásico:
+
+\begin{equation}
+\label{4.6.1} \beta P = \frac{e^{\beta \mu}}{\lambda^3} = n
+\end{equation}
+
+\begin{equation}
+\label{4.6.2} n = \frac{\partial P}{\partial \mu} = \frac{e^{\beta \mu}}{\lambda^3}  = \zeta 
+\end{equation}
+
+
+Donde $\zeta$ es la fugacidad y la igualdad densidad fugacidad ocurre solo para el caso clásico.
+
+\begin{align*}
+ \lambda \ll  n^{-\frac{1}{3}} \\
+ \lambda  n^{\frac{1}{3}}\ll 1\\
+ \lambda^3  \zeta \ll 1 
+\end{align*}
+
+\begin{equation}
+\label{4.6.3}   \lambda \ll  n^{-\frac{1}{3}} \longleftrightarrow e^{\beta\mu} \ll 1 \quad \textbf{Condición de un Régimen Débilmente Degenerado para el Gas Ideal}
+\end{equation}
+
+
+
+Utilizando la condición para un régimen débilmente degenerado en un gas ideal (\ref{4.6.3}), se procede a expandir la siguiente expresión:
+
+
+\begin{equation}
+\label{4.6.4}  \mp \ln\left(1 \mp e^{\beta \mu}e^{-x}\right) = \sum_{l=1}^{\infty} \frac{(\pm 1)^l}{l} \left( e^{\beta \mu} e^{-x}\right)^l
+\end{equation}
+
+
+\begin{equation}
+\label{4.6.5} \braket{P}_g = - \frac{\partial \Omega}{\partial V} = \frac{\ln \mathbf{Z}_g}{V}
+\end{equation}
+
+
+Utilizando la expansión (\ref{4.6.4}) y la expresión para la presión de un gas ideal en el límite termodinámico (\ref{4.6.4}), se obtiene lo siguiente:
+
+
+
+\begin{equation}
+\label{4.6.6} \beta\braket{P}_g = 4 \pi \sqrt{2} \left(\frac{m}{\beta h^2}\right)^{\frac{3}{2}} \int_{\mathbb{R}^+}  \sqrt{x}\sum_{l=1}^{\infty} \frac{(\pm 1)^{l+1}}{l} \left( e^{\beta \mu} e^{-x}\right)^l \; dx
+\end{equation}
+
+
+
+\begin{equation}
+\label{4.6.7} \int_{\mathbb{R}^+} \sqrt{x}   e^{-xl} \; dx = \int_{\mathbb{R}^+} \sqrt{\frac{u}{l}} e^{-u} \frac{du}{l} = \frac{\Gamma(3/2)}{l^{\frac{3}{2}}}
+\end{equation}
+
+
+Tras calcular la integral (\ref{4.6.7}), se obtiene la expresión para un gas ideal cuántico en el régimen débilmente degenerado:
+
+\begin{equation}
+\label{4.6.8} \beta \braket{P}_g = \frac{1}{\lambda^3}\sum_{l=1}^{\infty} \frac{(\pm 1)^{l+1}}{l^{\frac{5}{2}}} e^{\beta \mu l} 
+\end{equation}
+
+
+
+Aun utilizando la convención de signo superior para Bosones e inferior para Fermiones se tiene:
+
+\begin{equation}
+\label{4.6.9} \beta \braket{P}_g = \frac{1}{\lambda^3} \left(  e^{\beta \mu} \pm \frac{e^{2 \beta mu}}{2^{\frac{5}{2}}} + O\left( e^{3\beta\mu }\right)  \right) 
+\end{equation}
+
+
+\begin{equation}
+\label{4.6.10} n = \frac{\partial P}{\partial \mu} = \frac{1}{\lambda^3} \left(  e^{\beta \mu} \pm \frac{e^{2 \beta mu}}{2^{\frac{3}{2}}} + O\left( e^{3\beta\mu }\right)  \right) 
+\end{equation}
+
+
+
+\begin{equation}
+\label{4.6.11} e^{\beta \mu}  = n\lambda^3 + C_2 (n\lambda^3)^2 +  O\left( e^{3\beta\mu }\right)
+\end{equation}
+
+Donde $C_2$ es el coeficiente que sale de la corrección de segundo orden.
+
+
+
+
+\begin{equation}
+\label{4.6.12} {\beta P}  = n + B_2 n^2 +  O\left( n^3\right)
+\end{equation}
+
+
+
+\begin{equation}
+\label{4.6.13}  B_2 = \mp \frac{\lambda^3}{2^{\frac{3}{2}}}
+\end{equation}
+
+\chapter{Gas Ideal de Fermiones Independientes}
+
+
+\section{Introducción}
+
+
+Se considera un régimen fuertemente degenerado $ n \lambda^3 \gg 1$. Este modelo provee una aproximación al comportamiento de los electrones de conducción libres en un metal. 
+
+
+
+\begin{align}
+\label{5.1.1} \lambda \sim 5\times 10^{-9} m   \\
+\label{5.1.2} n_e \sim \left(\frac{1}{3 A^{\degree}}\right)^3
+\end{align}
+
+
+
+\begin{equation}
+\label{5.1.3} \lambda_e^3 n_e \sim 6 \times 10^3 \gg 1
+ \end{equation}
+
+
+Donde $\lambda_e$ es la longitud de onda de un electrón.
+
+\section{Estado Fundamental}
+
+
+
+
+
+
+\begin{figure}[H]
+ \label{figf}	\centering
+ 	\includegraphics[scale = 0.27]{fermi}
+ 	\caption{Esfera de Fermi }
+ 	\label{fermi}
+ \end{figure}
+
+
+
+\begin{equation}
+\label{5.2.1} k_f = \textbf{\# de Onda de Fermi}
+\end{equation}
+
+
+\begin{equation}
+\label{5.2.2} P_f = \hbar \; k_f = \textbf{Momento de Fermi}
+\end{equation}
+
+
+La esfera de Fermi consiste en el volumen en el cual se encuentran los sitios de ocupación no nulos. Fuera de la esfera los sitios están vacíos. 
+
+\begin{equation}
+\label{5.2.3} \mathcal{N} = \frac{4\pi/3 k_f^3}{(2\pi)^3/V} =\frac{ V k_f^3}{6\pi^2} 
+\end{equation}
+
+
+Para spin $1/2$ caben dos electrones por sitio, por lo que el número de electrones es:
+
+\begin{equation}
+\label{5.2.4} N = 2\mathcal{N}
+\end{equation}
+
+\begin{equation}
+\label{5.2.5} N = \frac{ V k_f^3}{3\pi^2} 
+\end{equation}
+
+\begin{equation}
+\label{5.2.6} k_f^3 = 3\pi^2 n  
+\end{equation}
+
+
+Los electrones que "están" en el borde de la esfera de Fermi tienen $k= k_f$ y energía $\epsilon_f$:
+
+\begin{equation}
+\label{5.2.7}\epsilon_f = \frac{3\pi^2   \hbar^2 n}{2m} 
+\end{equation}
+
+
+
+Se define la temperatura de Fermi:
+
+
+
+\begin{equation}
+\label{5.2.8} k_B T_f = \epsilon_f 
+\end{equation}
+
+
+\begin{equation}
+\label{5.2.9} T \ll T_f \qquad \longrightarrow \qquad \textbf{Régimen Fuertemente Degenerado}  
+\end{equation}
+
+
+
+Con la temperatura de Fermi se obtiene la una nueva forma de expresar la condición para un régimen fuertemente degenerado en función de la temperatura (\ref{5.2.9}).\\
+
+\textbf{Temperatura Cero:}\\
+
+Para temperatura nula, todos los sitios por fuera de la esfera de Fermi están desocupados.
+
+
+\begin{equation}
+\label{5.2.10} E_{\text{TOT}} = \sum_{\sigma} \sum_{\vec{k}}   n_{\vec{k},\sigma} \epsilon_{\vec{k}} = 2 \sum_{|\vec{k}|\leq |\vec{k}_f|}    \epsilon_{\vec{k}} 
+\end{equation}
+
+Donde en (\ref{5.2.10}) la suma sobre los spines da el factor 2 por tratarse de electrones.
+
+\begin{equation}
+\label{5.2.11} E_{\text{TOT}} \approx 2 \int_{|\vec{k}|\leq |\vec{k}_f|}  d\vec{k} \;  \epsilon_{\vec{k}}  = 2\int_{0}^{\epsilon_f} d\epsilon \;4\pi V \epsilon \sqrt{\frac{2m^3 \epsilon}{h^3}}
+\end{equation}
+
+En el límite termodinámico se tiene la aproximación discutida en la sección de gases ideales cuánticos que para este caso es (\ref{5.2.12}).
+\begin{equation}
+\label{5.2.12} E_{\text{TOT}}(T=0) \approx \frac{ V \hbar^2 k_f^5 }{5\pi^2 m}
+\end{equation}
+
+\begin{equation}
+\label{5.2.13} E_{\text{TOT}}(T=0) = \frac{3}{5} N \epsilon_f
+\end{equation}
+
+
+Una justificación de por que los sitios fuera de la esfera de Fermi están vacíos a temperatura cero esta dada por la expresión para los números de ocupación evaluada en el límite $\beta \rightarrow \infty$:
+
+
+
+\begin{equation}
+   \label{5.1.14}    \braket{n_{\vec{k},\sigma}}= \frac{1}{1 + e^{\beta(\epsilon_{\vec{k},\sigma}-\mu)}} =\begin{cases}
+        1 \qquad  \text{si } \quad \epsilon_{\vec{k},\sigma}<\mu\\
+        0  \qquad 
+          \text{si } \quad\epsilon_{\vec{k},\sigma}>\mu
+        \end{cases}
+\end{equation}
+
+En ( \ref{5.1.14}) se observa que para temperatura cero la energía de Fermi es el potencial químico, $\epsilon_f =\mu$.
+
+
+
+\begin{equation}
+\label{5.2.15}  n = \frac{1}{3\pi^2} \left(\frac{2m\mu}{\hbar^2}\right)^{\frac{3}{2}}
+\end{equation}
+
+Para temperatura cero la densidad en el gas de electrones libres esta dada por (\ref{5.2.15}).
+
+
+
+
+
+
+\begin{equation}
+\label{5.2.16}  P = \frac{1}{8\pi^3\beta}\int d\Omega \int_{0}^{k_f} dk \; \ln(1+ e^{\beta(\mu-\epsilon_k)})
+\end{equation}
+
+
+
+
+
+
+\begin{equation}
+   \label{5.2.17}    \ln {1 + e^{\beta(\mu-\epsilon_{\vec{k}})}} =\begin{cases}
+       \beta(\mu - \epsilon_k)  \qquad  \text{si } \quad \epsilon_{\vec{k}}<\mu\\
+        0  \qquad \quad \quad \quad \; \;\;
+          \text{si } \quad\epsilon_{\vec{k}}>\mu
+        \end{cases}
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{5.2.18}  P(T=0) = \frac{1}{8\pi^3\beta} 4\pi \int_{0}^{k_f} dk \; k^2{\beta(\mu-\epsilon_k)} = \frac{2n\epsilon_f}{5}
+\end{equation}
+
+
+\begin{equation}
+\label{5.2.19}  P(T=0) = \frac{(3\pi^2 \hbar^3)^{2/3}}{5} \frac{n^{5/3}}{m}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Gas de Bosones Independientes}
+
+
+
+
+
+
+\section{Introducción}
+
+
+\begin{figure}[H]
+ \label{figc}	\centering
+ 	\includegraphics[scale = 0.27]{condensado}
+ 	\caption{Acumulación en el estado fundamental (Bosones)}
+ 	\label{condensado}
+ \end{figure}
+
+
+
+
+\begin{equation}
+\label{6.1.1} \frac{\hbar^2 |\vec{k}|^2}{2m} \sim k_B T
+\end{equation}
+
+
+
+La ecuación (\ref{6.1.1}) da una estimación de hasta que valores de $\vec{k}$ tienen población los números de ocupación. Para valores de la temperatura cercanos a cero empieza a ocurrir un fenomeno que se conoce como condensación de Bose-Einstein.\\
+
+
+
+\begin{equation}
+\label{6.1.2} N \sim N_0 = \braket{n_0}
+\end{equation}
+
+
+\begin{equation}
+\label{6.1.3} \braket{n_{\vec{k}}}_{\vec{k}\neq 0} \ll N
+\end{equation}
+\textbf{Condensación de Bose-Einstein:} Cuando $T\longrightarrow0$, el estado base ($\vec{k}=0$) adquiere una población macroscopicamente grande $N_0$, es decir $N_0 \sim N$.
+
+
+
+\section{Condensación de Bose-Einstein}
+
+
+
+
+
+\begin{equation}
+\label{6.1.4} \braket{n_{\vec{k}}}  = \frac{1}{e^{\beta(\epsilon_{\vec{k}}-\mu)}-1}
+\end{equation}
+
+
+\begin{equation}
+\label{6.1.5} \braket{n_{0}}  = \frac{1}{e^{-\beta\mu}-1}
+\end{equation}
+
+
+
+Se observa que para que el número de ocupación del estado base (\ref{6.1.5}) cumpla lo que se asumio en la deducción para el número de ocupación, se debe tener $\mu<0$.
+
+
+
+\begin{equation}
+\label{6.1.6}\text{si} \qquad\mu \longrightarrow 0^- \qquad \text{entonces}\qquad\braket{n_0} \longrightarrow \infty
+\end{equation}
+
+Para entender mejor lo que pasa se pasa a la descripción canónica.\\
+
+\textbf{Descripción Canónica}
+
+
+\begin{equation}
+\label{6.1.7}\frac{\braket{N}}{V} = \sum_{\vec{k}} \frac{1}{e^{\beta(\epsilon_{\vec{k}}-\mu)}-1} = \int_{\mathbb{R}^+} d\epsilon\; \frac{2\pi\sqrt{\epsilon}}{e^{\beta(\epsilon_{\vec{k}}-\mu)}-1} \left(\frac{2m}{h^2}\right)^{\frac{3}{2}}  
+\end{equation}
+
+
+\begin{figure}[H]
+ \label{figi}	\centering
+ 	\includegraphics[scale = 0.27]{intbos}
+ 	\caption{Falla al integrar sin tomar en cuenta la divergencia del estado base}
+ 	\label{intbos}
+ \end{figure}
+
+
+Hay que tener cuidado cuando se hace el procedimiento (\ref{6.1.7}) porque en el límite $\mu \longrightarrow 0^-$ la integral no da cuenta de la contribución que genera el número de ocupación del estado base, como se muestra en la figura (\ref{intbos}).
+
+
+
+\begin{equation}
+\label{6.1.8}\frac{\braket{N}}{V} =\frac{\braket{n_0}}{V} + \sum_{\vec{k}} \frac{1}{e^{\beta(\epsilon_{\vec{k}}-\mu)}-1} =\frac{\braket{n_0}}{V}+ \int_{\mathbb{R}^+} d\epsilon\; \frac{2\pi\sqrt{\epsilon}}{e^{\beta(\epsilon_{\vec{k}}-\mu)}-1} \left(\frac{2m}{h^2}\right)^{\frac{3}{2}}  
+\end{equation}
+
+
+
+\begin{equation}
+\label{6.1.9} \int_{\mathbb{R}^+} d\epsilon\; \frac{2\pi\sqrt{\epsilon}}{e^{\beta(\epsilon_{\vec{k}}-\mu)}-1} \left(\frac{2m}{h^2}\right)^{\frac{3}{2}} = \int_{\mathbb{R}^+} dx\;   \frac{2\pi\sqrt{x}}{e^{\frac{x}{\beta\mu}}-1} \left(\frac{2m}{\beta h^2}\right)^{\frac{3}{2}} = \frac{2}{\sqrt{\pi} \lambda^3} I_{\frac{1}{2}}(e^{\beta \mu})
+\end{equation}
+
+
+
+\begin{equation}
+\label{6.1.10}  I_{j}(z) = \int_{\mathbb{R}^+} dx\;   \frac{x^j}{\frac{e^{x}}{z}-1}
+\end{equation}
+
+
+En el caso en que $\mu < 0$ y no está cercano a $0$, se tiene:
+
+
+
+\begin{equation}
+\label{6.1.11}\frac{\braket{N}}{V} =   \frac{2}{\sqrt{\pi} \lambda^3} I_{\frac{1}{2}}(e^{\beta \mu})
+\end{equation}
+
+
+
+En el caso en que $\mu \longrightarrow 0^-$, $z \longrightarrow 1^-$. Por lo que se tiene:
+
+
+
+\begin{equation}
+\label{6.1.12}\frac{\braket{N}}{V} = \frac{\braket{n_0}}{V}  + \frac{2}{\sqrt{\pi} \lambda^3} I_{\frac{1}{2}}(1)
+\end{equation}
+
+
+Se quiere invertir esta relación para obtener $z= e^{\beta \mu} $ en función de $N$.
+
+
+
+\begin{figure}[H]
+ \label{figin}	\centering
+ 	\includegraphics[scale = 0.27]{inti}
+ 	\caption{Comportamiento de $I_{1/2}(z)$}
+ 	\label{inti}
+ \end{figure}
+
+
+Análisis de $I_{\frac{1}{2}}$:
+
+
+
+
+
+
+\begin{equation}
+\label{6.1.13} \frac{\sqrt{x}}{e^x-1} \quad \substack{\sim \\ x \rightarrow 0} \quad\frac{\sqrt{x}}{x} = \frac{1}{\sqrt{x}} \quad\substack{\longrightarrow \\ x\rightarrow 0}\quad \infty
+\end{equation}
+
+\begin{equation}
+\label{6.1.14} \int_{\mathbb{R}^+}\frac{dx}{\sqrt{x}} < \infty
+\end{equation}
+
+
+Se observa que la función a integral diverge en 0 (\ref{6.1.13}), sin embargo la integral sobre los reales positivos de esta función no diverge (\ref{6.1.14}). 
+
+
+
+
+
+\begin{equation}
+\label{6.1.15}\frac{\sqrt{\pi}n\lambda^{\frac{3}{2}}}{2} \longrightarrow  I_{\frac{1}{2}}(1) \approx 2.315
+\end{equation}
+
+
+\begin{equation}
+\label{6.1.16}\frac{\sqrt{\pi}n}{2} \left(\frac{h^2}{2\pi m k_B T_B}\right)^{\frac{3}{2}} = I_{\frac{1}{2}}(1)
+\end{equation}
+
+
+
+
+\begin{equation}
+\label{6.1.17}  k_B T_B =  \left(\frac{\sqrt{\pi}n}{2 }I_{\frac{1}{2}}(1)\right)^{\frac{2}{3}} \frac{h^2}{2\pi m}
+\end{equation}
+
+
+La temperatura para la cual se tiene $I_{\frac{1}{2}}(1)$, es $T_B$. 
+
+\begin{align}
+\label{6.1.18} T> T_B  \longrightarrow \mu<0 \quad\text{no cercano a } 0^- \\
+\label{6.1.19} T\leq T_B  \longrightarrow \mu \rightarrow 0^-
+\end{align}
+
+Con $T_B$ se obtiene la condición para tener un potencial químico negativo y cercano a 0 ó negativo pero lejos de ser 0.
+
+
+
+\begin{equation}
+\label{6.1.20} \frac{\braket{N}-\braket{n_0}}{V} = \frac{2 I_{\frac{1}{2}}(1)}{\sqrt{\pi}\lambda^3}= \frac{N}{V}\left(\frac{T}{T_B}\right)^{\frac{3}{2}}
+\end{equation}
+
+
+\begin{equation}
+\label{6.1.21}\braket{n_0} = \braket{N} \left[1- \left(\frac{T}{T_B}\right)^{\frac{3}{2}}
+\right]\end{equation}
+
+
+\begin{figure}[H]
+ \label{figno}	\centering
+ 	\includegraphics[scale = 0.27]{no}
+ 	\caption{Comportamiento de $\braket{n_0}$ para $T\leq T_B$}
+ 	\label{no}
+ \end{figure}
+
+
+\section{Termodinámica}
+
+
+\begin{equation}
+\label{6.3.1} E = \sum{\vec{k}} \epsilon_{\vec{k}}  \braket{n_{\vec{k}}} =\epsilon_{\vec{0}}  \braket{n_0} + \sum_{\substack{\vec{k} \\k\neq 0}} \epsilon_{\vec{k}}  \braket{n_{\vec{k}}} =  \sum_{\substack{\vec{k} \\k\neq 0}} \epsilon_{\vec{k}}  \braket{n_{\vec{k}}}
+\end{equation}
+
+Para $T\leq T_B$ se tiene la expresión (\ref{6.3.1}) para la energía.
+
+
+
+
+\begin{equation}
+\label{6.3.2} E\frac{\beta}{V} = \frac{2}{\sqrt{\pi}\lambda^3 } \int_{\mathbb{R}^+} dx\; \frac{x^{\frac{3}{2}}}{\frac{e^x}{z}-1} = \frac{2}{\sqrt{\pi}\lambda^3 } I_{\frac{3}{2}}(z) \qquad \textbf{Para } T>T_B
+\end{equation}
+
+
+
+
+
+
+\begin{equation}
+\label{6.3.3} E\frac{\beta}{V} =  \frac{2}{\sqrt{\pi}\lambda^3 } I_{\frac{3}{2}}(1) \qquad \textbf{Para } T \leq T_B
+\end{equation}
+
+Las expresiones para la energía son dadas por (\ref{6.3.1} - \ref{6.3.2}). Se observa que por debajo de la temperatura crítica $T_B$ la energía no depende de la densidad.
+
+
+\begin{equation}
+\label{6.3.4} \beta P = -\frac{2}{\sqrt{\pi}\lambda^3 } \int_{\mathbb{R}^+} dx\; \sqrt{x} \ln(1-ze^{-x})    \qquad \textbf{Para } T>T_B
+\end{equation}
+
+
+\begin{equation}
+\label{6.3.5} \beta P = -\frac{2}{\sqrt{\pi}\lambda^3 } \int_{\mathbb{R}^+} dx\; \sqrt{x} \ln(1-e^{-x})    \qquad \textbf{Para } T>T_B
+\end{equation}
+
+Las expresiones para la energía son dadas por (\ref{6.3.4} - \ref{6.3.5}). Se observa que por debajo de la temperatura crítica $T_B$ la presión no depende de la densidad. Para la presión tampoco contribuye la energía del estado base.
+
+
+
+
+\begin{equation}
+\label{6.3.6} E \propto T^{\frac{5}{2}} \qquad \textbf{Para } T>T_B
+\end{equation}
+
+
+\begin{equation}
+\label{6.3.7}  P \propto T^{\frac{5}{2}} \qquad \textbf{Para } T>T_B
+\end{equation}
+
+
+
+
+\begin{figure}[H]
+ \label{figgc}	\centering
+ 	\includegraphics[scale = 0.27]{graficond}
+ 	\caption{Transición de primer orden}
+ \end{figure}
+
+
+
+
+\chapter{Gas de Fotones}
+
+\section{Introducción}
+
+Para un gas de fotones es inconveniente tratar con el spin, por lo que se utiliza la helicidad. 
+
+
+
+
+\begin{equation}
+\label{7.1.1} \vec{E}(\vec{r},t) = \vec{E}_0 e^{i(\vec{k}\cdot\vec{r}-\omega t)}
+\end{equation}
+
+
+
+\begin{equation}
+\label{7.1.2}\omega = c |\vec{k}|
+\end{equation}
+
+Para los fotones se tiene la relación de dispersión \ref{7.1.2}. 
+
+\begin{equation}
+\label{7.1.3} \epsilon_{\vec{k},\sigma} = \hbar \omega
+\end{equation}
+
+
+La energía de un nodo de oscilación de frecuencia $\omega$, vector de onda $\vec{k}$ y helicidad $\omega$ esta dada por \ref{7.1.3}
+
+\section{Función de Partición Canónica}
+
+
+El número de fotones no esta fijo (siempre hay la misma energía pero estos fotones se combinan y dividen, por lo que $N$ no esta fijo).
+
+
+
+\begin{equation}
+\label{7.2.1} \mathbf{Z}_c(T,V) =\sum_{n_{\vec{k}_1,\sigma_1}}^{\infty} \sum_{n_{\vec{k}_1,\sigma_2}}^{\infty}  \sum_{n_{\vec{k_2},\sigma_1}}^{\infty} \dots e^{-\beta (n_{\vec{k_1},\sigma_1}\epsilon_{\vec{k_1},\sigma_1}+n_{\vec{k_1},\sigma_2}\epsilon_{\vec{k_1},\sigma_2}+n_{\vec{k_1},\sigma_2}\epsilon_{\vec{k_2},\sigma_2}+\dots)} 
+\end{equation}
+
+
+
+\begin{equation}
+\label{7.2.2}\sum_{n_{\vec{k}_1,\sigma_1}}^{\infty} \sum_{n_{\vec{k}_1,\sigma_2}}^{\infty}  \sum_{n_{\vec{k_2},\sigma_1}}^{\infty} \dots e^{-\beta (n_{\vec{k_1},\sigma_1}\epsilon_{\vec{k_1},\sigma_1}+n_{\vec{k_1},\sigma_2}\epsilon_{\vec{k_1},\sigma_2}+n_{\vec{k_1},\sigma_2}\epsilon_{\vec{k_2},\sigma_2}+\dots)}  = \sum_{n_{\vec{k},\sigma}} \prod_{\vec{k,\sigma}} e^{-\beta n_{\vec{k},\sigma}\epsilon_{\vec{k},\sigma}}
+\end{equation}
+
+
+\begin{equation}
+\label{7.2.3} \sum_{n_{\vec{k},\sigma}} \prod_{\vec{k,\sigma}} e^{-\beta n_{\vec{k},\sigma}\epsilon_{\vec{k},\sigma}} = \left(\sum_{n_{\vec{k}_1,\sigma_1}} e^{-\beta n_{\vec{k_1},\sigma_1}\epsilon_{\vec{k}_1,\sigma_1}}  \right) \dots\left(\sum_{n_{\vec{k}_j,\sigma_i}} e^{-\beta n_{\vec{k_j},\sigma_i}\epsilon_{\vec{k}_j,\sigma_i}}  \right)  \dots 
+\end{equation}
+
+\begin{equation}
+\label{7.2.4} \left(\sum_{n_{\vec{k}_1,\sigma_1}} e^{-\beta n_{\vec{k_1},\sigma_1}\epsilon_{\vec{k}_1,\sigma_1}}  \right) \dots\left(\sum_{n_{\vec{k}_j,\sigma_i}} e^{-\beta n_{\vec{k_j},\sigma_i}\epsilon_{\vec{k}_j,\sigma_i}}  \right)  \dots = \prod_{\vec{k},\sigma} \sum_{n=0}^{\infty} e^{-\beta n \epsilon_{\vec{k},\sigma}}
+\end{equation}
+
+
+
+\begin{equation}
+\label{7.2.5} \mathbf{Z}_c (T,V) = \prod_{\vec{k},\sigma} \frac{1}{1-e^{-\beta n \epsilon_{\vec{k},\sigma}}} = \prod_{\vec{k}} \left(\frac{1}{1-e^{-\beta n \epsilon_{\vec{k},\sigma}}}\right)^2 
+\end{equation}
+
+Donde el hecho de que $\beta n \epsilon_{\vec{k},\sigma} \geq 0 $.
+
+
+\begin{equation}
+\label{7.2.6} \mathcal{P}_{\vec{k},\sigma} (n) = \frac{e^{-\beta n \epsilon_{\vec{k},\sigma}}}{\sum_{n=0}^{\infty}e^{-\beta n \epsilon_{\vec{k},\sigma}}} = e^{-\beta n \epsilon_{\vec{k}}}\left(1- e^{-\beta  \epsilon_{\vec{k}}}\right)
+\end{equation}
+
+
+La probabilidad de ocupación de un sitio esta dada por (\ref{7.2.6}). Nuevamente se uso el hecho de que la función de partición es separable por lo que se solo se divide por la función de partición del estado deseado.
+
+
+
+
+
+\begin{equation}
+\label{7.2.7} \braket{n_{\vec{k},\sigma}} =\sum_{n=0}^{\infty} n\mathcal{P}_{\vec{k},\sigma} (n) = \frac{e^{-\beta n \epsilon_{\vec{k},\sigma}}}{\sum_{n=0}^{\infty}e^{-\beta n \epsilon_{\vec{k},\sigma}}} = \left(\sum_{n=0}^{\infty} n e^{-\beta n \epsilon_{\vec{k}}}\right)\left(1- e^{-\beta  \epsilon_{\vec{k}}}\right)
+\end{equation}
+
+
+
+
+
+
+\begin{equation}
+\label{7.2.8} \braket{n_{\vec{k},\sigma}} = \frac{1}{e^{\beta  \epsilon_{\vec{k}}} -1} = \frac{1}{e^{\beta \hbar \omega } -1}
+\end{equation}
+
+
+
+\section{Energía Promedio}
+
+
+
+\begin{equation}
+\label{7.3.1} E(V,T) =\sum_{\vec{k}, \sigma}\braket{n_{\vec{k},\sigma}} \epsilon_{\vec{k},\sigma}
+\end{equation}
+
+
+
+
+
+
+
+\begin{equation}
+\label{7.3.2} \sum_{\vec{k}, \sigma}f(\epsilon_{\vec{k},\sigma})\simeq 2 \int \frac{d\vec{k}}{8\pi^3/V} f(\epsilon_{\vec{k}})
+\end{equation}
+
+
+
+
+
+\begin{equation}
+\label{7.3.3} \sum_{\vec{k}, \sigma}f(\epsilon_{\vec{k},\sigma})\simeq \frac{V}{\pi^2c} \int_{\mathbb{R}^+} d\omega\; \left(\frac{\omega}{c}\right)^2f(\hbar \omega) 
+\end{equation}
+
+En el límite termodinámico, aprovechando la densidad alta de puntos se cambia la suma por un integral (\ref{7.3.2}). Al sumar sobre las dos polarizaciones posibles aparece el 2 que acompaña la expresión (\ref{7.3.2}).
+
+\begin{equation}
+\label{7.3.4} E(V,T) = \frac{V}{\pi^2c^3} \int_{\mathbb{R}^+} d\omega\; \frac{\hbar \omega^3}{e^{\beta \hbar \omega}-1 }
+\end{equation}
+
+
+
+\begin{equation}
+\label{7.3.5} E(V,T) =  \int_{\mathbb{R}^+} u(\omega,T)\; d\omega
+\end{equation}
+
+
+
+\begin{equation}
+\label{7.3.6}   u(\omega,T) =\frac{V\hbar}{\pi^2c^3}  \frac{ \omega^3}{e^{\beta \hbar \omega}-1 } \qquad \textbf{Densidad Espectral de Energía}
+\end{equation}
+
+Se define en (\ref{7.3.6}) la densidad espectral de energías, que dice cuanto contribuye a la energía total una frecuencia $\omega$.
+
+\begin{equation}
+\label{7.3.7} E(V,T) = \frac{V(k_B T)^4}{\pi^2c^3 \hbar^3} \int_{\mathbb{R}^+} dx\; \frac{x^3}{e^{x}-1 }
+\end{equation}
+
+
+\begin{equation}
+\label{7.3.8} E(V,T) = \frac{V\pi^2}{15\beta^4c^3\hbar^3} \propto T^4   \qquad \textbf{Ley de Stefan-Boltzmann}
+\end{equation}
+
+En la expresión (\ref{7.3.8}) se recupera la ley de Stefan-Boltzmann.
+
+\begin{equation}
+\label{7.3.9}F(T,V) = \frac{V}{\pi^2 \beta} \int_{\mathbb{R}^+} dk\; k^2 \ln(1-e^{-\beta\hbar c k})
+\end{equation}
+
+\begin{equation*}
+ = \frac{V}{\pi^2 \beta^4 \hbar^3 c^3} \int_{\mathbb{R}^+} dx\; x^2 \ln(1-e^{-x}) = -\frac{V \pi^2 (k_B T)^4}{45 \hbar^3 c^3}
+\end{equation*}
+
+\begin{equation}
+\label{7.3.10}F(T,V) = -\frac{V \pi^2 (k_B T)^4}{45 \hbar^3 c^3}
+\end{equation}
+
+
+La energía libre de Helmholtz en el límite termodinámico esta dada por la expresión  (\ref{7.3.10}).
+
+\begin{equation}
+\label{7.3.11} \braket{P} = - \frac{\partial F}{\partial V}
+\end{equation}
+
+
+\begin{equation}
+\label{7.3.12} \braket{P} = \frac{ \pi^2 (k_B T)^4}{45 \hbar^3 c^3} = \sigma T^4 
+\end{equation}
+
+
+\begin{equation}
+\label{7.3.13} \braket{P} V = \frac{E}{3}
+\end{equation}
+
+Utilizando la relación (\ref{7.3.11}) se puede calcular la presión de radiación (\ref{7.3.12}) y su relación con la energía (\ref{7.3.11}).
+
+\section{Ley de Rayleigh-Jeans \& Ley de Wien (empírica)}
+
+
+\textbf{Ley de Rayleigh-Jeans:}\\
+
+Por la equipartición de la energía se tiene que cada modo de vibración contribuye $k_B T$ a la energía total:
+
+\begin{equation}
+\label{7.4.1}   u_{R,J}(\omega,T) =\frac{V}{\pi^2c^3}  \omega^2 k_B T 
+\end{equation}
+
+
+Se observa que para $\hbar \omega \ll k_B T$ la expresión (\ref{7.3.6}) recupera la ley de Rayleigh-Jeans.\\
+
+\textbf{Ley de Wien:}\\
+
+
+
+\begin{equation}
+\label{7.4.2}   u_{W}(\omega,T) =\frac{V \hbar}{\pi^2c^3}  \omega^3  e^{-\beta \hbar \omega}
+\end{equation}
+
+
+Se observa que para $\hbar \omega \gg k_B T$ la expresión (\ref{7.3.6}) recupera la ley de Wien.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
